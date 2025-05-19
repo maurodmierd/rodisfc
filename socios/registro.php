@@ -1,9 +1,14 @@
-<?php include("../includes/header.php"); ?>
-<h2>Registro de Socios</h2>
-<form action="../procesos/procesar_registro.php" method="POST">
-    <input type="text" name="nombre" placeholder="Nombre completo" required>
-    <input type="email" name="email" placeholder="Correo" required>
-    <input type="password" name="password" placeholder="Contraseña" required>
-    <button type="submit">Registrarse</button>
-</form>
-<?php include("../includes/footer.php"); ?>
+<?php include('../includes/header.php'); ?>
+<main>
+    <h1>Registro de Socio</h1>
+    <form action="procesar_registro.php" method="POST">
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre" name="nombre" required>
+
+        <label for="email">Correo Electrónico:</label>
+        <input type="email" id="email" name="email" required>
+
+        <button type="submit">Registrarse</button>
+    </form>
+</main>
+<?php include('../includes/footer.php'); ?>

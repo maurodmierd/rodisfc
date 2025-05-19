@@ -1,21 +1,35 @@
-<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Mi equipo de fútbol</title>
-    <link rel="stylesheet" href="css/estilos.css">
+    <title>Ródis F.C.</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+
 </head>
 <body>
+
+<?php session_start(); ?>
+
 <header>
-    <h2>Mi equipo de fútbol</h2>
-    <nav>
-        <a href="index.php">Inicio</a>
-        <a href="pages/historia.php">Historia</a>
-        <a href="pages/plantilla.php">Plantilla</a>
-        <a href="pages/resultados.php">Resultados</a>
-        <a href="pages/galeria.php">Galería</a>
-        <a href="pages/contacto.php">Contacto</a>
-        <a href="socios/login.php">Área Privada</a>
-    </nav>
+    <div class="header-flex">
+        <img src="img/logos/logo.png" alt="Escudo de Ródis F.C." class="logo">
+
+        <?php if (isset($_SESSION['usuario'])): ?>
+            <p>Benvido de novo!</p>
+            <a href="socios/areaPrivada.php" class="btn-cuenta">Zona Privada</a>
+        <?php else: ?>
+            <a href="socios/login.php" class="btn-cuenta">Mi cuenta</a>
+        <?php endif; ?>
+    </div>
 </header>
+
+<nav>
+    <a href="/index.php">Inicio</a>
+    <a href="/socios/login.php">Acceso Socios</a>
+    <a href="/views/plantilla.php">Plantilla</a>
+    <a href="/views/calendario.php">Calendario</a>
+    <a href="/views/contacto.php">Contacto</a>
+</nav>
+
