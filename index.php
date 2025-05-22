@@ -2,11 +2,11 @@
 include('includes/header.php');
 include('includes/conexion.php');
 
-// Obtener las 3 últimas noticias
-$resultado_noticias = $conexion->query("SELECT * FROM noticias ORDER BY fecha_publicacion DESC LIMIT 3");
+// // Obtener las 3 últimas noticias
+// $resultado_noticias = $conexion->query("SELECT * FROM noticias ORDER BY fecha_publicacion DESC LIMIT 3");
 
-// Obtener los próximos 3 partidos
-$resultado_partidos = $conexion->query("SELECT * FROM partidos ORDER BY fecha ASC LIMIT 3");
+// // Obtener los próximos 3 partidos
+// $resultado_partidos = $conexion->query("SELECT * FROM partidos ORDER BY fecha ASC LIMIT 3");
 ?>
 
 <!-- Contenido de la página -->

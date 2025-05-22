@@ -17,8 +17,8 @@
         <img src="img/logos/logo.png" alt="Escudo de Ródis F.C." class="logo">
 
         <?php if (isset($_SESSION['usuario'])): ?>
-            <p>Benvido de novo!</p>
             <a href="socios/areaPrivada.php" class="btn-cuenta">Zona Privada</a>
+            <a href="socios/logout.php" class="btn-cuenta">Cerrar sesión</a>
         <?php else: ?>
             <a href="socios/login.php" class="btn-cuenta">Mi cuenta</a>
         <?php endif; ?>

@@ -1,14 +1,18 @@
-<?php include('../includes/header.php'); ?>
-<main>
-    <h1>Registro de Socio</h1>
-    <form action="procesar_registro.php" method="POST">
-        <label for="nombre">Nombre:</label>
-        <input type="text" id="nombre" name="nombre" required>
+<?php
+include '../includes/conexion.php';
 
-        <label for="email">Correo Electrónico:</label>
-        <input type="email" id="email" name="email" required>
+$datos = [
+    'id' => '12345678A',
+    'nombre' => 'Juan',
+    'apellidos' => 'Pérez Gómez',
+    'telefono' => '666777888',
+    'email' => 'juan@ejemplo.com',
+    'contraseña' => password_hash('clave123', PASSWORD_DEFAULT),
+    'rol' => 'socio'
+];
 
-        <button type="submit">Registrarse</button>
-    </form>
-</main>
-<?php include('../includes/footer.php'); ?>
+$stmt = $conexion->prepare("INSERT INTO usuarios (id, nombre, apellidos, telefono, email, contraseña, rol) 
+VALUES (:id, :nombre, :apellidos, :telefono, :email, :contraseña, :rol)");
+$stmt->execute($datos);
+
+echo "Usuario registrado";
