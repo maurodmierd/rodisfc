@@ -1,51 +1,58 @@
 <?php
-include('includes/header.php');
-include('includes/conexion.php');
+include 'includes/header.php';
+include 'includes/conexion.php';
 
-// // Obtener las 3 últimas noticias
-// $resultado_noticias = $conexion->query("SELECT * FROM noticias ORDER BY fecha_publicacion DESC LIMIT 3");
+// Obtener las 3 últimas noticias públicas
+$stmt_noticias = $conexion->prepare("SELECT * FROM noticias WHERE categoria = 'publica' ORDER BY fecha DESC LIMIT 3");
+$stmt_noticias->execute();
+$noticias = $stmt_noticias->fetchAll(PDO::FETCH_ASSOC);
 
-// // Obtener los próximos 3 partidos
-// $resultado_partidos = $conexion->query("SELECT * FROM partidos ORDER BY fecha ASC LIMIT 3");
+// Obtener los próximos 3 partidos
+$stmt_partidos = $conexion->prepare("SELECT * FROM partido ORDER BY fecha ASC LIMIT 3");
+$stmt_partidos->execute();
+$partidos = $stmt_partidos->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
-<!-- Contenido de la página -->
 <div class="container">
     <h1>Benvido a Ródis F.C.</h1>
-
-    <!-- Sección de Noticias -->
+    <br>
+    <br>
+    <!-- Noticias -->
     <section id="noticias">
-        <h2>Noticias Recientes</h2>
-        <?php if ($resultado_noticias->num_rows > 0): ?>
-            <div class="noticias">
-                <?php while ($noticia = $resultado_noticias->fetch_assoc()): ?>
-                    <div class="noticia">
-                        <h3><?php echo $noticia['titulo']; ?></h3>
-                        <p><?php echo substr($noticia['contenido'], 0, 150); ?>...</p>
-                        <a href="#">Leer más</a>
+        <h2>📰 Noticias Recientes</h2>
+        <div class="etiquetas">
+            <?php if ($noticias): ?>
+                <?php foreach ($noticias as $noticia): ?>
+                    <div class="etiqueta noticia">
+                        <h3><?php echo htmlspecialchars($noticia['titulo']); ?></h3>
+                        <p><?php echo substr(strip_tags($noticia['contenido']), 0, 100); ?>...</p>
+                        <a href="views/verNoticia.php?id=<?php echo $noticia['id']; ?>" class="leer-mas">Leer más</a>
                     </div>
-                <?php endwhile; ?>
-            </div>
-        <?php endif; ?>
+                <?php endforeach; ?>
+            <?php else: ?>
+                <p>No hay noticias públicas disponibles.</p>
+            <?php endif; ?>
+        </div>
     </section>
-
-    <!-- Sección de Próximos Partidos -->
+    <br>
+    <br>
+    <br>
     <section id="partidos">
-        <h2>Próximos Partidos</h2>
-        <?php if ($resultado_partidos->num_rows > 0): ?>
-            <div class="partidos">
-                <?php while ($partido = $resultado_partidos->fetch_assoc()): ?>
-                    <div class="partido">
-                        <h3><?php echo $partido['equipo_local'] . " vs " . $partido['equipo_visitante']; ?></h3>
-                        <p>Fecha: <?php echo $partido['fecha']; ?> | Hora: <?php echo $partido['hora']; ?></p>
-                        <p>Lugar: <?php echo $partido['lugar']; ?></p>
+        <h2>⚽ Próximos Partidos</h2>
+        <div class="etiquetas">
+            <?php if ($partidos): ?>
+                <?php foreach ($partidos as $partido): ?>
+                    <div class="etiqueta partido">
+                        <h3><?php echo htmlspecialchars($partido['equipo_local'] . " vs " . $partido['equipo_visitante']); ?></h3>
+                        <p><strong>Fecha:</strong> <?php echo htmlspecialchars($partido['fecha']); ?> - <strong>Hora:</strong> <?php echo htmlspecialchars($partido['hora']); ?></p>
+                        <p><strong>Lugar:</strong> <?php echo htmlspecialchars($partido['lugar']); ?></p>
                     </div>
-                <?php endwhile; ?>
-            </div>
-        <?php endif; ?>
+                <?php endforeach; ?>
+            <?php else: ?>
+                <p>No hay partidos próximos registrados.</p>
+            <?php endif; ?>
+        </div>
     </section>
 </div>
 
-<?php
-include('includes/footer.php');
-?>
+<?php include 'includes/footer.php'; ?>

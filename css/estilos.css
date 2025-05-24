@@ -1,33 +1,499 @@
-body {
+/* Estilos generales */
+* {
     margin: 0;
-    font-family: 'Roboto', sans-serif;
-    background-color: #ffffff;
-    color: #000;
+    padding: 0;
+    box-sizing: border-box;
 }
 
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #f5f5f5;
+    color: #333;
+    line-height: 1.6;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Asegura que el body ocupe al menos toda la altura de la ventana */
+}
+
+/* Header */
 .header {
+    background-color: #d92525;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #d92525;
-    padding: 1rem 2rem;
-    color: #fff;
-    font-family: 'Anton', sans-serif;
+    padding: 1rem 5%;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    font-family: 'Anton', 'Roboto';
 }
 
 .logo {
-    font-size: 2rem;
+    height: 80px;
+    width: auto;
 }
 
-.cuenta a {
-    color: white;
+.btn-cuenta {
+    background-color: #ba6f12;
+    color: #fff;
     text-decoration: none;
-    font-weight: bold;
+    padding: 0.6rem 1.2rem;
+    border-radius: 4px;
+    font-weight: 500;
+    transition: background-color 0.3s, transform 0.2s;
+    margin-left: 10px;
 }
 
-.footer {
-    text-align: center;
+.btn-cuenta:hover {
+    background-color: #9e5e0f;
+    transform: translateY(-2px);
+}
+
+/* Navegación */
+nav {
     background-color: #850f0b;
-    color: white;
+    display: flex;
+    justify-content: center;
+    padding: 1rem 0;
+}
+
+nav a {
+    color: #fff;
+    text-decoration: none;
+    padding: 0.5rem 1.5rem;
+    margin: 0 5px;
+    font-weight: 500;
+    transition: background-color 0.3s;
+    border-radius: 3px;
+}
+
+nav a:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 70vh;
+}
+
+/* Footer */
+.footer {
+    background-color: #850f0b;
+    color: #fff;
+    padding: 2rem 5%;
+    margin-top: auto; /* Empuja el footer al fondo */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.footer p {
+    margin: 0;
+    padding: 0.5rem 0;
+}
+
+.footer ul {
+    list-style: none;
+    display: flex;
+    gap: 1.5rem;
+}
+
+.footer ul li a {
+    color: #fff;
+    text-decoration: none;
+    transition: color 0.3s;
+    position: relative;
+    padding-bottom: 3px;
+}
+
+.footer ul li a:hover {
+    color: #ba6f12;
+}
+
+.footer ul li a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: #ba6f12;
+    transition: width 0.3s;
+}
+
+.footer ul li a:hover::after {
+    width: 100%;
+}
+
+/* Formulario de Login */
+form {
+    max-width: 400px;
+    margin: 3rem auto;
+    padding: 2rem;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    position: relative;
+    overflow: hidden;
+}
+
+form::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background-color: #d92525;
+}
+
+form input[type="text"],
+form input[type="password"],
+form input[type="email"] {
+    width: 100%;
+    padding: 12px 15px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1rem;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+form input:focus {
+    outline: none;
+    border-color: #850f0b;
+    box-shadow: 0 0 0 2px rgba(133, 15, 11, 0.1);
+}
+
+form input::placeholder {
+    color: #999;
+}
+
+/* Estilos para el checkbox de recordarme */
+.recordar-usuario {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.recordar-usuario input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    margin-right: 10px;
+    cursor: pointer;
+    accent-color: #ba6f12;
+}
+
+.recordar-usuario label {
+    font-size: 0.95rem;
+    color: #555;
+    cursor: pointer;
+    user-select: none;
+}
+
+.recordar-usuario label:hover {
+    color: #ba6f12;
+}
+
+form button {
+    width: 100%;
+    padding: 12px;
+    background-color: #ba6f12;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+form button:hover {
+    background-color: #9e5e0f;
+    transform: translateY(-2px);
+}
+
+form button:active {
+    transform: translateY(0);
+}
+
+/* Mensaje de error */
+.error-message {
+    color: #d92525;
+    margin-bottom: 15px;
+    font-size: 0.9rem;
+    text-align: center;
+}
+
+/* Estilos para el área privada de socios */
+.container {
+    max-width: 900px;
+    margin: 3rem auto;
+    padding: 2.5rem;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    position: relative;
+    overflow: hidden;
+}
+
+.container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background-color: #d92525;
+}
+
+.container h2 {
+    color: #850f0b;
+    margin-bottom: 1rem;
+    font-size: 30px;
+    position: relative;
+    display: inline-block;
+}
+
+.container h2::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 50px;
+    height: 3px;
+    background-color: #ba6f12;
+}
+
+.container p {
+    color: #555;
+    margin-bottom: 2rem;
+    font-size: 1.1rem;
+}
+
+.etiquetas {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.2rem;
+    margin-top: 1rem;
+}
+
+.etiqueta {
+    background-color: #ffffff;
+    border-left: 5px solid #ba6f12;
     padding: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+    flex: 1 1 calc(33% - 1.2rem);
+    min-width: 250px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    transition: transform 0.2s;
+}
+
+.etiqueta:hover {
+    transform: scale(1.02);
+}
+
+.etiqueta h3 {
+    margin-bottom: 0.5rem;
+    color: #850f0b;
+}
+
+.etiqueta p {
+    margin-bottom: 0.5rem;
+    color: #555;
+}
+
+.leer-mas {
+    display: inline-block;
+    margin-top: 0.5rem;
+    color: #ba6f12;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.leer-mas:hover {
+    text-decoration: underline;
+}
+
+
+/* Estilos para los botones */
+.botones {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2.5rem;
+}
+
+.btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #ba6f12;
+    color: #fff;
+    text-decoration: none;
+    padding: 1rem 1.5rem;
+    border-radius: 6px;
+    font-weight: 500;
+    text-align: center;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border: none;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    height: 60px;
+}
+
+.btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: 0.5s;
+}
+
+.btn:hover {
+    background-color: #9e5e0f;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.btn:hover::before {
+    left: 100%;
+}
+
+.btn:active {
+    transform: translateY(-1px);
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilo para el enlace de cerrar sesión */
+.container > a {
+    display: inline-block;
+    color: #850f0b;
+    text-decoration: none;
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+    border: 1px solid #850f0b;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+}
+
+.container > a:hover {
+    background-color: #850f0b;
+    color: #fff;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .header {
+        flex-direction: column;
+        padding: 1rem;
+    }
+    
+    .logo {
+        margin-bottom: 1rem;
+        height: 60px;
+    }
+    
+    nav {
+        flex-wrap: wrap;
+    }
+    
+    nav a {
+        margin: 5px;
+        text-align: center;
+        flex: 1 0 40%;
+    }
+    
+    .footer {
+        flex-direction: column;
+        text-align: center;
+        gap: 1rem;
+    }
+    
+    .footer ul {
+        justify-content: center;
+        margin-top: 1rem;
+    }
+    
+    form {
+        margin: 2rem 1rem;
+        padding: 1.5rem;
+    }
+    
+    .container {
+        margin: 2rem 1rem;
+        padding: 1.5rem;
+    }
+    
+    .botones {
+        grid-template-columns: 1fr;
+    }
+    
+    .btn {
+        width: 100%;
+    }
+}
+
+.anton{
+    font-family: 'Anton', 'Roboto';
+}
+
+@media (max-width: 480px) {
+    nav {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    nav a {
+        width: 90%;
+        margin: 5px 0;
+        padding: 0.8rem 0;
+    }
+    
+    .btn-cuenta {
+        display: block;
+        text-align: center;
+        margin: 5px 0;
+    }
+    
+    .footer ul {
+        flex-direction: column;
+        gap: 0.8rem;
+    }
+    
+    .container h2 {
+        font-size: 1.5rem;
+    }
+    
+    .container p {
+        font-size: 1rem;
+    }
+    
+    .btn {
+        padding: 0.8rem 1rem;
+        font-size: 0.9rem;
+        height: 50px;
+    }
+}
+
+#galeria {
+    display: none;
+    position: fixed;
+    top: 0; 
+    left: 0; 
+    width: 100%; 
+    height: 100%; 
+    background: rgba(0,0,0,0.8);
+    justify-content: center; 
+    align-items: center; 
+    z-index: 9999;
 }
