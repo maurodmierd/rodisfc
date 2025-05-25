@@ -14,7 +14,7 @@ $partidos = $stmt_partidos->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
 <div class="container">
-    <h1>Benvido a Ródis F.C.</h1>
+    <h1>Benvido ó Ródis F.C.</h1>
     <br>
     <br>
     <!-- Noticias -->
@@ -37,6 +37,7 @@ $partidos = $stmt_partidos->fetchAll(PDO::FETCH_ASSOC);
     <br>
     <br>
     <br>
+    <!-- Partidos -->
     <section id="partidos">
         <h2>⚽ Próximos Partidos</h2>
         <div class="etiquetas">

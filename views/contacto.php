@@ -1,3 +1,12 @@
 <?php
-include '../includes/header.php';
-include '../includes/footer.php';
+    include '../includes/header.php';
+?>
+<form action="../procesos/procesarContacto.php" method="POST">
+    <input type="text" name="nombre" placeholder="Tu nombre" required>
+    <input type="email" name="email" placeholder="Tu correo" required>
+    <textarea name="mensaje" placeholder="Tu mensaje" required></textarea>
+    <button type="submit">Enviar</button>
+</form>
+<?php
+    include '../includes/footer.php';
+?>
