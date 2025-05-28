@@ -2,7 +2,7 @@
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
-
+// Verificamos se a sesión está iniciada.
 if (!isset($_SESSION['usuario'])) {
     header("Location: login.php");
     exit();
@@ -11,9 +11,10 @@ if (!isset($_SESSION['usuario'])) {
 include '../includes/header.php';
 ?>
 
+<!-- Botóns para administradores -->
 <div class="container">
     <h2>Benvido, <?php echo $_SESSION['usuario']['nombre']?></h2>
-
+    <!-- Comproba o rol do usuario para saber se ten acceso a esta sección. -->
     <?php if (isset($_SESSION['rol']) && $_SESSION['rol'] === 'admin'): ?>
         <div class="admin-botonera" style='padding: 15px 100px;'>
             <a href="../procesos/insertarSocio.php" class="btn">Insertar Socio</a>
@@ -24,11 +25,12 @@ include '../includes/header.php';
             <a href="../procesos/subirImagenes.php" class="btn">Subir Imagen</a>
         </div>
     <?php else: ?>
-        <p>No tienes permisos para acceder a esta sección.</p>
+        <p>Non tes permisos para acceder a esta sección.</p>
     <?php endif; ?>
-
-    <a href="logout.php" class="btn">Cerrar sesión</a>
 </div>
+
+
+<!-- Comunicados privados -->
 <div class='container'>
     <h3>Comunicados para Socios</h3>
     <?php
@@ -38,6 +40,7 @@ include '../includes/header.php';
     $stmt->execute();
     $noticias = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
+    // Se hai noticias, amosámolas
     if ($noticias):
         foreach ($noticias as $noticia):
     ?>
@@ -48,11 +51,11 @@ include '../includes/header.php';
     <?php
         endforeach;
     else:
-        echo "<p>No hay comunicados privados disponibles.</p>";
+        echo "<p>Non hai comunicados privados para amosar.</p>";
     endif;
     ?>
 </div>
 
 
 
-<?php include '../includes/footer.php'; ?>
+<?php include '../includes/footer.php';

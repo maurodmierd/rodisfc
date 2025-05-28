@@ -1,6 +1,6 @@
-<?php include('../includes/header.php'); ?>
+<?php include '../includes/header.php'; ?>
 <main>
-    <h1>Noticias del Club</h1>
+    <h1>Noticias do Clube</h1>
     
 </main>
-<?php include('../includes/footer.php'); ?>
+<?php include '../includes/footer.php'; ?>

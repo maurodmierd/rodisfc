@@ -1,5 +1,5 @@
 <?php
-// selector_imagen.php
+// Recorre as imaxes gardadas na base de datos
 $stmt = $conexion->query("SELECT id, nombre, descripcion FROM img");
 $imagenes = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
@@ -10,6 +10,7 @@ $imagenes = $stmt->fetchAll(PDO::FETCH_ASSOC);
         
         <h3>Selecciona una imagen</h3>
         <div style="display: flex; flex-wrap: wrap; gap: 15px;">
+            <!-- Recorre as imaxes e amosa cada unha -->
             <?php foreach ($imagenes as $img): ?>
                 <img src="../img/<?= htmlspecialchars($img['nombre']) ?>"
                      alt="<?= htmlspecialchars($img['descripcion'] ?? '') ?>"

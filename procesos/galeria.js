@@ -15,7 +15,7 @@ function seleccionarImagen(img) {
 
     if (input && preview) {
         input.value = id;
-        preview.innerHTML = `<p><strong>Imagen seleccionada:</strong></p>
+        preview.innerHTML = `<p><strong>Imaxe seleccionada:</strong></p>
             <img src="../img/${nombre}" style="max-width: 200px;">`;
     }
 
