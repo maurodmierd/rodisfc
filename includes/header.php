@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Ródis F.C.</title>
+    <title>Rodís F.C.</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Rodís F.C. - Toda a actualidade do club: últimas noticias, próximos partidos, plantilla e contacto. Club de fútbol galego en constante crecemento.">
     <meta name="keywords" content="Rodís F.C., fútbol, Galicia, noticias, partidos, plantilla, club de fútbol, deportes, equipo galego,rodis,cerceda">
@@ -10,13 +10,12 @@
     <link rel="icon" href="../img/logos/logo.png">
     <link href="https://fonts.googleapis.com/css2?family=Anton&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../css/estilos.css">
-
 </head>
 <body>
 <!-- Si hai unha sesión iniciada, mostra o botón de Área Privada e Cerrar sesión -->
 <?php if (session_status() === PHP_SESSION_NONE) session_start() ?>
 <header class="header">
-    <img src="../img/logos/logo.png" alt="Escudo do Ródis F.C." class="logo">
+    <img src="../img/logos/logo.png" alt="Escudo do Rodís F.C." class="logo">
 
     <?php if (isset($_SESSION['usuario'])): ?>
         <a href="../socios/areaPrivada.php" class="btn-cuenta">Área Privada</a>
