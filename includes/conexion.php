@@ -8,5 +8,5 @@ $pass = '';
 try {
     $conexion = new PDO("mysql:host=$host;dbname=$db;charset=utf8mb4", $user, $pass);
 } catch (PDOException $e) {
-    echo('Err base d datos');
+    echo 'Err base d datos' . $e->getMessage();
 }

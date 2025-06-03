@@ -4,9 +4,10 @@
     <meta charset="UTF-8">
     <title>Rodís F.C.</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Rodís F.C. - Toda a actualidade do club: últimas noticias, próximos partidos, plantilla e contacto. Club de fútbol galego en constante crecemento.">
-    <meta name="keywords" content="Rodís F.C., fútbol, Galicia, noticias, partidos, plantilla, club de fútbol, deportes, equipo galego,rodis,cerceda">
+    <meta name="description" content="Rodís F.C. - Portal de contido do club con toda a actualidade: últimas noticias, próximos partidos, plantilla e contacto. Club de fútbol galego en constante crecemento.">
+    <meta name="keywords" content="Rodís FC, Rodis, Rodís F.C., fútbol, Galicia, noticias, partidos, plantilla, club de fútbol, deportes, equipo galego, rodis, cerceda">
     <meta name="author" content="Rodís F.C.">
+    <meta charset="UTF-8">
     <link rel="icon" href="../img/logos/logo.png">
     <link href="https://fonts.googleapis.com/css2?family=Anton&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../src/estilos.css">

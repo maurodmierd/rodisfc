@@ -10,7 +10,7 @@ function obtenerJugadores($conexion, $equipo) {
         $stmt->execute([$equipo]);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     } catch (PDOException $e) {
-        error_log("Error recibindo xogadores: " . $e->getMessage());
+        echo ("Error recibindo xogadores: " . $e->getMessage());
         return [];
     }
 }

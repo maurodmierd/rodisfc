@@ -49,7 +49,7 @@ $partidos_proximos = $stmt_partidos_proximos->fetchAll(PDO::FETCH_ASSOC);
                 <div class="carrusel-track" id="carrusel-noticias">
                     <?php if ($noticias): ?>
                         <?php foreach ($noticias as $index => $noticia): ?>
-                            <div class="carrusel-slide <?php echo $index == 0 ? 'active' : ''; ?>">
+                            <div class="carrusel-slide <?php echo $index === 0 ? 'active' : ''; ?>">
                                 <div class="noticia-card">
                                     <div class="noticia-imagen">
                                         <?php if (!empty($noticia['imagen'])): ?>

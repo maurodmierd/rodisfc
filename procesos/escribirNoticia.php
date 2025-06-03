@@ -44,8 +44,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     <button type="submit">Publicar Noticia</button>
 </form>
-
+<script src="js/adminImg.js"></script>
 <?php 
-    include 'galeria.php';
     include '../includes/footer.php';
 ?>
