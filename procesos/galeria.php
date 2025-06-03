@@ -24,4 +24,4 @@ $imagenes = $stmt->fetchAll(PDO::FETCH_ASSOC);
         <button onclick="cerrarGaleria()">Cancelar</button>
     </div>
 </div>
-<script src='galeria.js' defer></script>
+<script src='js/galeria.js' defer></script>

@@ -9,7 +9,7 @@
     <meta name="author" content="Rodís F.C.">
     <link rel="icon" href="../img/logos/logo.png">
     <link href="https://fonts.googleapis.com/css2?family=Anton&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../css/estilos.css">
+    <link rel="stylesheet" href="../src/estilos.css">
 </head>
 <body>
 <!-- Si hai unha sesión iniciada, mostra o botón de Área Privada e Cerrar sesión -->

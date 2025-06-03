@@ -32,4 +32,4 @@ if (file_exists($archivo)) {
     <?php endif; ?>
 </div>
 
-<?php include'../includes/footer.php'; ?>
+<?php include '../includes/footer.php'; ?>
