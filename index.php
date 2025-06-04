@@ -63,9 +63,13 @@ $partidos_proximos = $stmt_partidos_proximos->fetchAll(PDO::FETCH_ASSOC);
                                     <div class="noticia-contenido">
                                         <h3><?php echo htmlspecialchars($noticia['titulo']); ?></h3>
                                         <p><?php echo substr(strip_tags($noticia['contenido']), 0, 100); ?>...</p>
-                                        <a href="views/verNoticia.php?id=<?php echo $noticia['id']; ?>" class="btn-leer-mas">
-                                            <span class="icon">👁️</span> Leer máis
-                                        </a>
+                                        <button class="btn-leer-mas" 
+                                                onclick="abrirModalNoticia(<?php echo $noticia['id']; ?>)"
+                                                data-noticia-id="<?php echo $noticia['id']; ?>"
+                                                data-slide-index="<?php echo $index; ?>"
+                                                type="button">
+                                            <span class="icon">👁️</span> Ler máis
+                                        </button>
                                     </div>
                                 </div>
                             </div>
@@ -205,5 +209,4 @@ $partidos_proximos = $stmt_partidos_proximos->fetchAll(PDO::FETCH_ASSOC);
 </div>
 
 <script src="../src/index.js"></script>
-
-<?php include 'includes/footer.php';
+<?php include 'includes/footer.php'; ?>

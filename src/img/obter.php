@@ -8,36 +8,34 @@ include '../../includes/conexion.php';
 
 try {
     // query para obter imaxes
-    $stmt = $pdo->prepare("
-        SELECT id, nombre, categoria, descripcion, fecha_subida 
+    $stmt = $conexion->prepare("
+        SELECT id, nombre, categoria, descripcion, fecha, ruta
         FROM img 
         WHERE activo = 1 
-        ORDER BY fecha_subida DESC
+        ORDER BY fecha DESC
     ");
     $stmt->execute();
-    
     $imaxes = [];
     
     while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-        $ruta_archivo = "../../img/" . $row['categoria'] . "/" . $row['nombre'];
-        if (file_exists($ruta_archivo)) {
+        if (file_exists($row['ruta'])) {
             $imaxes[] = [
                 'id' => (int)$row['id'],
                 'nombre' => $row['nombre'],
                 'categoria' => $row['categoria'],
                 'descripcion' => $row['descripcion'] ?? '',
-                'fecha_subida' => $row['fecha_subida'],
-                'url' => "img/" . $row['categoria'] . "/" . $row['nombre']
+                'fecha' => $row['fecha'],
+                'url' => $row['ruta']
             ];
         } else {
-            $updateStmt = $pdo->prepare("UPDATE img SET activo = 0 WHERE id = ?");
+            $updateStmt = $conexion->prepare("UPDATE img SET activo = 0 WHERE id = ?");
             $updateStmt->execute([$row['id']]);
         }
     }
-    sendResponse(true, 'Imaxes obtidas correctamente', $imagenes);
+    sendResponse(true, 'Imaxes obtidas correctamente', $imaxes);
     
 } catch (PDOException $e) {
-    sendResponse(false, 'Erro da conexión á base de datos');
+    sendResponse(false, 'Erro da conexión á base de datos: '.$e->getMessage());
 } catch (Exception $e) {
     sendResponse(false, 'Erro internoo');
 }

@@ -173,7 +173,7 @@ function cargarImagenes() {
     .then(response => response.json())
     .then(data => {
         if (data.success) {
-            imagenes = data.imagenes
+            imagenes = data.data
             mostrarImagenes()
         } else {
             console.error('Erro ao cargar imaxes:', data.message)

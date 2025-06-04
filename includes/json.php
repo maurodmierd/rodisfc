@@ -4,7 +4,7 @@ function sendResponse($success, $message = '', $data = null) {
     echo json_encode([
         'success' => $success,
         'message' => $message,
-        'imagenes' => $data
+        'data' => $data
     ]);
     exit;
 }

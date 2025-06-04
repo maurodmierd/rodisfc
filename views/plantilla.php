@@ -22,8 +22,8 @@ $jugadores_veteranos = obtenerJugadores($conexion, 'veteranos');
 
 
 <div class="container">
-    <h2 class="anton">Plantilla del Club</h2>
-    <p>Conoce a nuestros jugadores de ambos equipos</p>
+    <h2 class="anton">Plantilla do Club</h2>
+    <p>Os nosos xogadores</p>
 
     <!-- Equipo Senior -->
     <div class="equipo-seccion">
@@ -31,7 +31,7 @@ $jugadores_veteranos = obtenerJugadores($conexion, 'veteranos');
         <div class="jugadores-grid" id="jugadores-senior">
             <?php if (empty($jugadores_senior)): ?>
                 <div class="no-jugadores">
-                    <p>No hay jugadores registrados en el equipo senior</p>
+                    <p>Non hai xogadores rexistrados no equipo senior</p>
                 </div>
             <?php else: ?>
                 <?php foreach ($jugadores_senior as $jugador): ?>
@@ -67,7 +67,7 @@ $jugadores_veteranos = obtenerJugadores($conexion, 'veteranos');
         <div class="jugadores-grid" id="jugadores-veteranos">
             <?php if (empty($jugadores_veteranos)): ?>
                 <div class="no-jugadores">
-                    <p>No hay jugadores registrados en el equipo veteranos</p>
+                    <p>Non hai xogadores rexistrados no equipo veteranos</p>
                 </div>
             <?php else: ?>
                 <?php foreach ($jugadores_veteranos as $jugador): ?>
@@ -95,7 +95,6 @@ $jugadores_veteranos = obtenerJugadores($conexion, 'veteranos');
     </div>
 </div>
 
-<!-- Ventana para mostrar detalles del jugador -->
 <div id="modal-jugador" class="modal" style="display: none;">
     <div class="modal-contenido jugador-modal">
         <span class="cerrar-modal" onclick="cerrarModal()">&times;</span>
@@ -120,22 +119,6 @@ $jugadores_veteranos = obtenerJugadores($conexion, 'veteranos');
                     <div class="dato">
                         <label>Edad:</label>
                         <span id="modal-edad"></span>
-                    </div>
-                    <div class="dato">
-                        <label>Altura:</label>
-                        <span id="modal-altura"></span>
-                    </div>
-                    <div class="dato">
-                        <label>Peso:</label>
-                        <span id="modal-peso"></span>
-                    </div>
-                    <div class="dato">
-                        <label>Teléfono:</label>
-                        <span id="modal-telefono"></span>
-                    </div>
-                    <div class="dato">
-                        <label>Email:</label>
-                        <span id="modal-email"></span>
                     </div>
                     <div class="dato dato-completo">
                         <label>Observaciones:</label>

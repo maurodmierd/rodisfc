@@ -13,7 +13,7 @@ try {
     }
     
     // Query para seleccionar a imaxe a eliminar
-    $stmt = $pdo->prepare("SELECT nombre, categoria FROM img WHERE id = ? AND activo = 1");
+    $stmt = $conexion->prepare("SELECT nombre, categoria FROM img WHERE id = ? AND activo = 1");
     $stmt->execute([(int)$input['id']]);
     $imagen = $stmt->fetch(PDO::FETCH_ASSOC);
     if (!$imagen) {
@@ -27,7 +27,7 @@ try {
     if (file_exists($ruta_archivo)) {
         $archivo_eliminado = unlink($ruta_archivo);
     }
-    $deleteStmt = $pdo->prepare("UPDATE img SET activo = 0 WHERE id = ?");
+    $deleteStmt = $conexion->prepare("UPDATE img SET activo = 0 WHERE id = ?");
     if ($deleteStmt->execute([$imagen_id])) {
         if (!$archivo_eliminado) {
             sendResponse(true, 'Imaxe eliminada da base de datos, arquivo físico non encontrado');

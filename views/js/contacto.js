@@ -1,34 +1,47 @@
 document.addEventListener("DOMContentLoaded", () => {
-    let modal = document.getElementById("contactModal")
-    let openBtn = document.getElementById("openModal")
-    let closeBtn = document.querySelector(".cerrar-modal")
+    let modal = document.getElementById("contactModal");
+    let openBtn = document.getElementById("openModal");
+    let closeBtn = document.querySelector(".cerrar-modal");
 
     function abrirModal() {
-        modal.style.display = "block"
-        document.body.style.overflow = "hidden"
+        modal.classList.add("show");
+        modal.style.display = "flex";
+        document.body.style.overflow = "hidden";
+        setTimeout(() => {
+            modal.querySelector('.modal-contenido').style.transform = 'scale(1)';
+            modal.querySelector('.modal-contenido').style.opacity = '1';
+        }, 10);
     }
-
     function cerrarModal() {
-        modal.style.display = "none"
-        document.body.style.overflow = "auto"
+        modal.querySelector('.modal-contenido').style.transform = 'scale(0.9)';
+        modal.querySelector('.modal-contenido').style.opacity = '0';
+        setTimeout(() => {
+            modal.classList.remove("show");
+            modal.style.display = "none";
+            document.body.style.overflow = "auto";
+        }, 200);
     }
 
-    // Cerra a ventana se se fai click fora do modal
-    function clickOutside(event) {
-        if (event.target === modal) {
-            cerrarModal()
+    // Cerrar facendo clic fora ou ca tecla escape
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) {
+            cerrarModal();
         }
-    }
-    
-    // Cerra a ventana con escape
-    document.addEventListener("keydown", (event) => {
-        if (event.key === "Escape" && modal.style.display === "block") {
+    })
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
             cerrarModal()
         }
     })
 
-    // Asignar eventos
-    openBtn.addEventListener("click", abrirModal)
-    closeBtn.addEventListener("click", cerrarModal)
-    window.addEventListener("click", clickOutside)
-})
+    // eventos
+    openBtn.addEventListener("click", abrirModal);
+    closeBtn.addEventListener("click", cerrarModal);
+    modal.addEventListener("click", clickOutside);
+
+    
+    let modalContent = modal.querySelector('.modal-contenido');
+        modalContent.style.transform = 'scale(0.9)';
+        modalContent.style.opacity = '0';
+        modalContent.style.transition = 'all 0.2s ease';
+});
