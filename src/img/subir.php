@@ -11,12 +11,6 @@ $max_file_size = 5 * 1024 * 1024; // 5MB
 $extFotos = ['jpg', 'jpeg', 'png', 'gif', 'webp'];
 $categorias_validas = ['logos', 'jugadoresSenior', 'jugadoresVeteranos', 'equipo', 'noticias', 'otros'];
 
-
-// validacion do tipo de archivo con pathinfo
-function extraerExt($filename) {
-    global $extFotos;
-    return strtolower(pathinfo($filename, PATHINFO_EXTENSION));
-}
 // funcion pra xerar nome único
 function generarNome($original_name) {
     $extension = pathinfo($original_name, PATHINFO_EXTENSION);
@@ -24,7 +18,6 @@ function generarNome($original_name) {
     $name = substr($name, 0, 50);
     return array($name . '_' . uniqid(),$extension);
 }
-
 
 try {
     // Verificar arquivo subido
@@ -46,15 +39,16 @@ try {
     $archivo = $_FILES['imagen'];
     
     // Validacions
-    if (!in_array(extraerExt($archivo['name']),$extFotos)) {
+    if (!in_array(generarNome($nombre_original)[1],$extFotos)) {
         sendResponse(false, 'Tipo de arquivo non permitido.  (JPG, JPEG, PNG, GIF, WEBP)');
     }
     if ($archivo['size'] > $max_file_size) {
         sendResponse(false, 'Archivo demasiado grande. Máximo 5MB');
     }
     
-    $nombre_archivo = generarNome($nombre_original);
-    $ruta_destino = "../../img/$categoria/". basename($nombre_archivo[0].".".$nombre_archivo[1]);
+    $nombre_archivo = generarNome($nombre_original)[0];
+    $ext_archivo = generarNome($nombre_original)[1];
+    $ruta_destino = __DIR__ . "../../img/$categoria/$nombre_archivo.$ext_archivo";
     if (!move_uploaded_file($archivo['tmp_name'], $ruta_destino)) {
         sendResponse(false, 'Error ao gardar o archivo');
     }
@@ -65,7 +59,7 @@ try {
         VALUES (?, ?, ?, ?, NOW(), 1)
     ");
     
-    $ruta_relativa = "img/$categoria/".$nombre_archivo[0].".".$nombre_archivo[1];
+    $ruta_relativa = "img/$categoria/$nombre_archivo.$ext_archivo";
     
     if ($stmt->execute([$nombre_original, $categoria, $descripcion, $ruta_relativa])) {
         $imagen_id = $conexion->lastInsertId();
@@ -74,7 +68,7 @@ try {
             'nombre' => $nombre_original,
             'categoria' => $categoria,
             'descripcion' => $descripcion,
-            'url' => $ruta_destino
+            'url' => $ruta_relativa
         ]);
     }
 } catch (PDOException $e) {

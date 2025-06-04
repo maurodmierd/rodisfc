@@ -20,10 +20,10 @@ try {
     while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
         if (file_exists($row['ruta'])) {
             $imaxes[] = [
-                'id' => (int)$row['id'],
+                'id' => $row['id'],
                 'nombre' => $row['nombre'],
                 'categoria' => $row['categoria'],
-                'descripcion' => $row['descripcion'] ?? '',
+                'descripcion' => $row['descripcion'],
                 'fecha' => $row['fecha'],
                 'url' => $row['ruta']
             ];

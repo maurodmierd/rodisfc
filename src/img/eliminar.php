@@ -13,22 +13,24 @@ try {
     }
     
     // Query para seleccionar a imaxe a eliminar
-    $stmt = $conexion->prepare("SELECT nombre, categoria FROM img WHERE id = ? AND activo = 1");
-    $stmt->execute([(int)$input['id']]);
-    $imagen = $stmt->fetch(PDO::FETCH_ASSOC);
-    if (!$imagen) {
+    $stmt = $conexion->prepare("SELECT ruta FROM img WHERE id = :id AND activo = 1");
+    $stmt->bindValue(':id',[$input['id']], PDO::PARAM_INT);
+    $stmt->execute();
+    $ruta_archivo =$stmt->fetch(PDO::FETCH_ASSOC)['ruta'];
+
+    if (!$ruta_archivo) {
         sendResponse(false, 'Imaxe non atopada');
     }
     
-    $ruta_archivo = "../../img/" . $imagen['categoria'] . "/" . $imagen['nombre'];
-    
     // Eliminar arquivo
     $archivo_eliminado = true;
+    $ruta_archivo = __DIR__."../../$ruta_archivo";
     if (file_exists($ruta_archivo)) {
         $archivo_eliminado = unlink($ruta_archivo);
     }
-    $deleteStmt = $conexion->prepare("UPDATE img SET activo = 0 WHERE id = ?");
-    if ($deleteStmt->execute([$imagen_id])) {
+    $deleteStmt = $conexion->prepare("UPDATE img SET activo = 0 WHERE id = :id");
+    $deletestmt->bindValue(':id',[$input['id']], PDO::PARAM_INT);
+    if ($deleteStmt->execute()) {
         if (!$archivo_eliminado) {
             sendResponse(true, 'Imaxe eliminada da base de datos, arquivo físico non encontrado');
         } else {
