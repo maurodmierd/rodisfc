@@ -100,7 +100,7 @@ $jugadores_veteranos = obtenerJugadores($conexion, 'veteranos');
         <span class="cerrar-modal" onclick="cerrarModal()">&times;</span>
         <div class="jugador-detalle">
             <div class="jugador-foto-grande">
-                <img id="modal-foto" src="/placeholder.svg" alt="">
+                <img id="modal-foto" src="../../img/logos/placeholder.png" alt="">
                 <div class="dorsal-grande">
                     <span id="modal-dorsal"></span>
                 </div>

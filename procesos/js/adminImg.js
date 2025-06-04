@@ -57,7 +57,7 @@ function crearModalGaleria() {
                             <label for="imagen-archivo">Seleccionar Imaxe:</label>
                             <input type="file" id="imagen-archivo" name="imagen" accept="image/*" required>
                             <div class="preview-container" id="preview-container" style="display: none;">
-                                <img id="preview-imagen" src="/cambiar.svg" alt="Preview">
+                                <img id="preview-imagen" src="../../img/logos/placeholder.png" alt="Preview">
                             </div>
                         </div>
 
@@ -205,7 +205,7 @@ function mostrarImagenes() {
                      data-id="${imagen.id}"
                      data-nombre="${imagen.nombre}"
                      data-categoria="${imagen.categoria}"
-                     onerror="this.src='/cambiar.svg?height=150&width=200'">
+                     onerror="this.src='../../img/logos/placeholder.png?height=150&width=200'">
                 <div class="imagen-overlay">
                     <button class="btn-seleccionar" onclick="seleccionarImagen(this.parentElement.previousElementSibling)">
                         <span class="icon">✓</span> Seleccionar
@@ -246,7 +246,7 @@ function seleccionarImagen(img) {
         preview.innerHTML = `
             <div class="imagen-seleccionada">
                 <p><strong>Imaxe seleccionada:</strong></p>
-                <img src="../img/${categoria}/${nombre}" alt="${nombre}" onerror="this.src='/cambiar.svg?height=150&width=200'">
+                <img src="../img/${categoria}/${nombre}" alt="${nombre}" onerror="this.src='../../img/logos/placeholder.png?height=150&width=200'">
                 <p>${nombre}</p>
             </div>
         `
