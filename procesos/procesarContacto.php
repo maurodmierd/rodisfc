@@ -28,7 +28,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $datos[] = $entrada;
     // Codifica os datos de novo a formato JSON e gárdao no arquivo
     file_put_contents($archivo, json_encode($datos, JSON_PRETTY_PRINT));
-    header('Location: ../views/contacto.php?enviado=1');
+    header('Location: ../views/contacto.php');
     exit();
 }
 ?>

@@ -1,4 +1,6 @@
-<?php include '../includes/header.php'; ?>
+<?php
+include '../includes/header.php';
+?>
 
 <div class="contact-container">
     <h2>📞 Contacto</h2>
@@ -17,10 +19,10 @@
             <input type="text" name="nombre" placeholder="Teu Nome Completo" required>
             <input type="email" name="email" placeholder="Teu Correo Electrónico" required>
             <textarea name="mensaje" placeholder="Escribe aquí a túa mensaxe..." required></textarea>
-            <button type="submit">📤 Enviar Mensaxe</button>
+            <button type="submit" id='submitBtn'>📤 Enviar Mensaxe</button>
         </form>
     </div>
 </div>
 
-<script src="../js/contactModal.js"></script>
+<script src="js/contacto.js"></script>
 <?php include '../includes/footer.php'; ?>
