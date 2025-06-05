@@ -3,7 +3,7 @@
 // Script para evitar acceso non autorizado
 include '../includes/header.php';
 if (!isset($_SESSION['usuario']) || $_SESSION['usuario']['rol'] !== 'admin') {
-    header("Location: ../areaPrivada.php");
+    header("Location: ../login/areaPrivada.php");
 }
 include '../includes/conexion.php';
 
@@ -18,7 +18,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $foto= $_POST['imagen_id'];
     }
     $texto = $_POST['texto'];
-
 
     $stmt = $conexion->prepare("INSERT INTO noticias (fecha, titulo, imagen_id, contenido) VALUES (?, ?, ?, ?)");
     $stmt->execute([$fecha, $titulo, $foto, $texto]);

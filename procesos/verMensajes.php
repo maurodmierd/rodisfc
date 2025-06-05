@@ -3,7 +3,7 @@
 // Script para evitar acceso non autorizado
 include '../includes/header.php';
 if (!isset($_SESSION['usuario']) || $_SESSION['usuario']['rol'] !== 'admin') {
-    header("Location: ../areaPrivada.php");
+    header("Location: ../login/areaPrivada.php");
 }
 $archivo = '../datos/contacto.json';
 $mensajes = [];

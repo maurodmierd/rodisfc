@@ -15,7 +15,7 @@ include '../includes/header.php';
     <div class="modal-contenido">
         <span class="cerrar-modal">&times;</span>
         <h3>📝 Formulario de Contacto</h3>
-        <form action="../procesos/procesarContacto.php" method="POST">
+        <form action="../api/procesarContacto.php" method="POST">
             <input type="text" name="nombre" placeholder="Teu Nome Completo" required>
             <input type="email" name="email" placeholder="Teu Correo Electrónico" required>
             <textarea name="mensaje" placeholder="Escribe aquí a túa mensaxe..." required></textarea>

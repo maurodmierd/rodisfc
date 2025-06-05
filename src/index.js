@@ -147,12 +147,6 @@ function crearModalNoticia() {
                 <p>Cargando noticia...</p>
             </div>
             </div>
-            
-            <div class="modal-noticia-footer">
-            <button class="btn-cerrar-noticia" onclick="cerrarModalNoticia()">
-                <span class="icon">✖️</span> Cerrar
-            </button>
-            </div>
         </div>
         </div>
     `
@@ -184,7 +178,7 @@ function cargarNoticia(noticiaId) {
         </div>
     `
     // peticion para obter noticia
-    fetch("src/obterNoticia.php?id="+noticiaId)
+    fetch("../api/obterNoticia.php?id="+noticiaId)
         .then((response) => response.json())
         .then((data) => {
         if (data.success) {

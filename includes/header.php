@@ -19,14 +19,14 @@
         
         <div class="header-buttons">
             <?php if (isset($_SESSION['usuario'])): ?>
-                <a href="../socios/areaPrivada.php" class="btn-cuenta btn-area-privada">
+                <a href="../login/areaPrivada.php" class="btn-cuenta btn-area-privada">
                     🏠 Área Privada
                 </a>
-                <a href="../socios/logout.php" class="btn-cuenta btn-cerrar-sesion">
+                <a href="../login/logout.php" class="btn-cuenta btn-cerrar-sesion">
                     🚪 Cerrar Sesión
                 </a>
             <?php else: ?>
-                <a href="../socios/login.php" class="btn-cuenta">
+                <a href="../login/login.php" class="btn-cuenta">
                     🔑 Iniciar Sesión
                 </a>
             <?php endif; ?>

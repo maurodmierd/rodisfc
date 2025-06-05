@@ -3,7 +3,7 @@
     include '../includes/conexion.php';
 
     if (!isset($_SESSION['usuario']) || $_SESSION['usuario']['rol'] !== 'admin') {
-        header("Location: ../areaPrivada.php");
+        header("Location: ../login/areaPrivada.php");
         exit();
     }
 
@@ -27,9 +27,13 @@
             <td><?= htmlspecialchars($usuario['email']) ?></td>
             <td><?= htmlspecialchars($usuario['rol']) ?></td>
             <td>
-                <button class="btn-editar" data-id="<?= $usuario['id'] ?>" data-nombre="<?= $usuario['nombre'] ?>"
-                    data-apellidos="<?= $usuario['apellidos'] ?>" data-email="<?= $usuario['email'] ?>"
-                    data-telefono="<?= $usuario['telefono'] ?>" data-rol="<?= $usuario['rol'] ?>">📝 Editar</button>
+                <button class="btn-editar" 
+                    data-id="<?= $usuario['id'] ?>" 
+                    data-nombre="<?= $usuario['nombre'] ?>"
+                    data-apellidos="<?= $usuario['apellidos'] ?>" 
+                    data-email="<?= $usuario['email'] ?>"
+                    data-telefono="<?= $usuario['telefono'] ?>" 
+                    data-rol="<?= $usuario['rol'] ?>">📝 Editar</button>
                 <button onclick="confirmarEliminacion('<?= $usuario['id'] ?>')">🗑️ Eliminar</button>
                 <button onclick="anotar('<?= $usuario['id'] ?>')">📌 Anotaciones</button>
             </td>
@@ -39,7 +43,7 @@
 
 <!-- Formulario para a edición -->
 <div id="modal-editar" class="modal" style="display:none;">
-    <form id="form-editar" method="POST" action="actualizarUsuario.php" onsubmit="return confirmarEdicion()">
+    <form id="form-editar" method="POST" action="../api/users/actualizarUsuario.php" onsubmit="return confirmarEdicion()">
         <h3>Editar Usuario</h3>
         <input type="hidden" name="id" id="edit-id">
         <input type="text" name="nombre" id="edit-nombre" placeholder="Nombre" required>
@@ -59,7 +63,7 @@
 
 <!-- Formulario de anotaciones -->
 <div id="modal-notas" class="modal" style="display:none;">
-    <form method="POST" action="guardarNotas.php">
+    <form method="POST" action="../api/users/guardarNotas.php">
         <h3>Anotación para usuario</h3>
         <input type="hidden" name="usuario_id" id="nota-id">
         <textarea name="nota" id="nota-texto" placeholder="Escribe unha nota..." rows="5" cols="40" required></textarea>

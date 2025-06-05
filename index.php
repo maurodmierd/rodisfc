@@ -1,7 +1,6 @@
 <?php
 include 'includes/header.php';
 include 'includes/conexion.php';
-echo phpinfo();
 
 // Obter as últimas 5 noticias públicas para o carrusel.
 $stmt_noticias = $conexion->prepare("SELECT * FROM noticias WHERE categoria = 'publica' ORDER BY fecha DESC LIMIT 5");

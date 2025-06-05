@@ -24,7 +24,18 @@ function confirmarEdicion() {
 function confirmarEliminacion(dni) {
     if (confirm("¿Seguro que queres eliminar o usuario con DNI " + dni + "?")) {
         if (confirm("Perderás toda a información asociada a este usuario. ¿Confirmas?")) {
-            window.location.href = "eliminarUsuario.php?id=" + encodeURIComponent(dni);
+            // peticion para obter noticia
+            fetch("../api/eliminarUsuario.php?id="+dni)
+                .then((response) => response.json())
+                .then((data) => {
+                if (data.success) {
+                    mostrarExito(data.message);
+                } else {
+                    mostrarError("Erro ao eliminar o usuario: " + data.message);
+                }
+                })
+                .catch(mostrarErrorNoticia("Erro de conexión"));
+
         }
     }
 }
@@ -36,4 +47,28 @@ function anotar(id) {
 
 function cerrarNotas() {
     document.getElementById("modal-notas").style.display = "none";
+}
+
+//Notificacions success error
+function mostrarExito(mensaje) {
+    mostrarNotificacion(mensaje, 'success');
+}
+function mostrarError(mensaje) {
+    mostrarNotificacion(mensaje, 'error');
+}
+function mostrarNotificacion(mensaje, tipo) {
+    let notificacion = document.getElementById('notificacion-galeria');
+    if (!notificacion) {
+        notificacion = document.createElement('div');
+        notificacion.id = 'notificacion-galeria';
+        notificacion.className = 'notificacion-galeria';
+        document.body.appendChild(notificacion);
+    }
+    notificacion.className = `notificacion-galeria ${tipo}`;
+    notificacion.textContent = mensaje;
+    notificacion.style.display = 'block';
+    // A notificacion eliminase aos 3s
+    setTimeout(() => {
+        notificacion.style.display = 'none';
+    }, 3000);
 }
