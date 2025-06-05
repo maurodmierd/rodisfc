@@ -6,10 +6,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     $entrada = [
         'usuario' => $nombre,
-        'texto' => $email,
+        'texto' => $texto,
     ];
 
-    $archivo = '../datos/notas.json';
+    $archivo = '../../datos/notas.json';
 
     $datos = [];
 

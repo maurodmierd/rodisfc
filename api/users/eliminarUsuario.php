@@ -3,8 +3,8 @@ header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Methods: GET');
 header('Access-Control-Allow-Headers: Content-Type');
 header('Content-Type: application/json');
-include '../includes/json.php';
-include '../includes/conexion.php';
+include '../../includes/json.php';
+include '../../includes/conexion.php';
 
 if (!isset($_GET['id'])) {
     sendResponse(false, 'ID de noticia non válido');
@@ -12,7 +12,7 @@ if (!isset($_GET['id'])) {
 }
 
 try {
-    $stmt = $conexion->prepare("DELETE FROM usuarios WHERE id = ? AND rol not 'admin'");
+    $stmt = $conexion->prepare("DELETE FROM usuarios WHERE id = ? AND rol != 'admin'");
     $stmt->execute([$_GET['id']]);
     if ($stmt->rowCount() > 0) {
         sendResponse(true, 'Usuario eliminado correctamente.');

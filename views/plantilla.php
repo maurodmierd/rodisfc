@@ -130,7 +130,7 @@ $jugadores_veteranos = obtenerJugadores($conexion, 'veteranos');
     </div>
 </div>
 
-<script src="jugadores.js"></script>
+<script src="js/plantilla.js"></script>
 
 </body>
 </html>

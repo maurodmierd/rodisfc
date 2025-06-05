@@ -14,7 +14,7 @@ try {
     
     // Query para seleccionar a imaxe a eliminar
     $stmt = $conexion->prepare("SELECT ruta FROM img WHERE id = :id AND activo = 1");
-    $stmt->bindValue(':id',[$input['id']], PDO::PARAM_INT);
+    $stmt->bindValue(':id',$input['id'], PDO::PARAM_INT);
     $stmt->execute();
     $ruta_archivo =$stmt->fetch(PDO::FETCH_ASSOC)['ruta'];
 
@@ -29,7 +29,7 @@ try {
         $archivo_eliminado = unlink($ruta_archivo);
     }
     $deleteStmt = $conexion->prepare("UPDATE img SET activo = 0 WHERE id = :id");
-    $deletestmt->bindValue(':id',[$input['id']], PDO::PARAM_INT);
+    $deletestmt->bindValue(':id',$input['id'], PDO::PARAM_INT);
     if ($deleteStmt->execute()) {
         if (!$archivo_eliminado) {
             sendResponse(true, 'Imaxe eliminada da base de datos, arquivo físico non encontrado');
