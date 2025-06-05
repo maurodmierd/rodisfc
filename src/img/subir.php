@@ -15,9 +15,15 @@ $categorias_validas = ['logos', 'jugadoresSenior', 'jugadoresVeteranos', 'equipo
 function generarNome($original_name) {
     $extension = pathinfo($original_name, PATHINFO_EXTENSION);
     $name = pathinfo($original_name, PATHINFO_FILENAME);
-    $name = substr($name, 0, 50);
-    return array($name . '_' . uniqid(),$extension);
+    $name = substr($name, 0, 200);
+    return array(
+        'name'=>$name . '_' . uniqid(),
+        'ext'=>$extension
+    );
 }
+
+$nombre_archivo = generarNome($_FILES['imagen']['name'])['name'];
+$ext_archivo = generarNome($_FILES['imagen']['name'])['ext'];
 
 try {
     // Verificar arquivo subido
@@ -39,24 +45,23 @@ try {
     $archivo = $_FILES['imagen'];
     
     // Validacions
-    if (!in_array(generarNome($nombre_original)[1],$extFotos)) {
-        sendResponse(false, 'Tipo de arquivo non permitido.  (JPG, JPEG, PNG, GIF, WEBP)');
+    if (!in_array($ext_archivo,$extFotos)) {
+        sendResponse(false, "[$ext_archivo] Tipo de arquivo non permitido.  (JPG, JPEG, PNG, GIF, WEBP)");
     }
     if ($archivo['size'] > $max_file_size) {
         sendResponse(false, 'Archivo demasiado grande. Máximo 5MB');
     }
     
-    $nombre_archivo = generarNome($nombre_original)[0];
-    $ext_archivo = generarNome($nombre_original)[1];
-    $ruta_destino = __DIR__ . "../../img/$categoria/$nombre_archivo.$ext_archivo";
+    
+    $ruta_destino = __DIR__ . "../../../img/$categoria/$nombre_archivo.$ext_archivo";
     if (!move_uploaded_file($archivo['tmp_name'], $ruta_destino)) {
         sendResponse(false, 'Error ao gardar o archivo');
     }
     
     //Query para bbdd
     $stmt = $conexion->prepare("
-        INSERT INTO img (nombre, categoria, descripcion, ruta, fecha, activo) 
-        VALUES (?, ?, ?, ?, NOW(), 1)
+        INSERT INTO img (nombre, categoria, descripcion, ruta, fecha) 
+        VALUES (?, ?, ?, ?, NOW())
     ");
     
     $ruta_relativa = "img/$categoria/$nombre_archivo.$ext_archivo";

@@ -18,7 +18,7 @@ try {
     $imaxes = [];
     
     while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-        if (file_exists($row['ruta'])) {
+        if (file_exists("../../".$row['ruta'])) {
             $imaxes[] = [
                 'id' => $row['id'],
                 'nombre' => $row['nombre'],
@@ -27,9 +27,11 @@ try {
                 'fecha' => $row['fecha'],
                 'url' => $row['ruta']
             ];
+            
         } else {
             $updateStmt = $conexion->prepare("UPDATE img SET activo = 0 WHERE id = ?");
             $updateStmt->execute([$row['id']]);
+            sendResponse(false, 'Erro na ruta da imaxe '.$row['nombre']);
         }
     }
     sendResponse(true, 'Imaxes obtidas correctamente', $imaxes);

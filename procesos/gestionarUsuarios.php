@@ -12,7 +12,7 @@
 ?>
 <script src="js/gestionUsuarios.js"></script>
 <h2>Lista de Usuarios</h2>
-<table border="1">
+<table class="tabla-usuarios">
     <tr>
         <th>DNI</th>
         <th>Nombre</th>
@@ -48,7 +48,7 @@
         <input type="text" name="telefono" id="edit-telefono" placeholder="Teléfono">
         <select name="rol" id="edit-rol" required>
             <option value="socio">Socio</option>
-            <option value="jugador">Jugador</option>
+            <option value="jugador">Xogador</option>
             <option value="admin">Administrador</option>
         </select>
         <br><br>

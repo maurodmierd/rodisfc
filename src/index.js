@@ -184,7 +184,7 @@ function cargarNoticia(noticiaId) {
         </div>
     `
     // peticion para obter noticia
-    fetch(`obterNoticia.php?id=${noticiaId}`)
+    fetch("src/obterNoticia.php?id="+noticiaId)
         .then((response) => response.json())
         .then((data) => {
         if (data.success) {
@@ -192,12 +192,6 @@ function cargarNoticia(noticiaId) {
             modalTitulo.innerHTML = `📰 ${noticia.titulo}`;
             modalBody.innerHTML = `
             <div class="noticia-completa">
-                ${noticia.imagen ?
-                 `
-                <div class="noticia-imagen-completa">
-                    <img src="${noticia.imagen}" alt="${noticia.titulo}" onerror="this.style.display='none'">
-                </div>
-                ` : ""}
                 <div class="noticia-meta">
                 <span class="noticia-fecha">
                     <span class="icon">📅</span>
@@ -212,6 +206,12 @@ function cargarNoticia(noticiaId) {
                 <div class="noticia-contenido-completo">
                 ${noticia.contenido}
                 </div>
+                ${noticia.ruta ?
+                 `
+                <div class="noticia-imagen-completa">
+                    <img src="../${noticia.ruta}" alt="${noticia.titulo}" onerror="this.style.display='none'">
+                </div>
+                ` : ""}
             </div>
             `
         } else {
