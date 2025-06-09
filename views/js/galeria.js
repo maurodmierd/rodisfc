@@ -116,7 +116,7 @@ function actualizarPaginacion() {
 
     btnAnterior.disabled = paginaActual === 1
     btnSiguiente.disabled = paginaActual === totalPaginas
-    infoPaginacion.textContent = `Página ${paginaActual} de ${totalPaginas}`;
+    infoPaginacion.textContent = `Páxina ${paginaActual} de ${totalPaginas}`;
 }
 
 function abrirModalImagen(imagenId) {

@@ -138,7 +138,6 @@ $dia_semana_inicio = ($dia_semana_inicio == 0) ? 6 : $dia_semana_inicio - 1;
         </div>
     </div>
 
-    <!-- Leyenda -->
     <div class="leyenda-calendario">
         <h4>Leyenda:</h4>
         <div class="leyenda-items">

@@ -22,7 +22,6 @@ include '../includes/header.php';
             <a href="../procesos/verMensajes.php" class="btn">Ver mensajes de contacto</a>
             <a href="../procesos/escribirNoticia.php" class="btn">Escribir Noticia</a>
             <a href="../procesos/gestionarUsuarios.php" class="btn">Gestionar Usuarios</a>
-            <a href="../procesos/subirImagenes.php" class="btn">Subir Imagen</a>
         </div>
     <?php else: ?>
         <p>Non tes permisos para acceder a esta sección.</p>

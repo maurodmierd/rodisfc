@@ -3047,7 +3047,7 @@ form::before,
   font-size: 1rem;
 }
 
-/* Responsive para galería */
+
 @media (max-width: 768px) {
   .galeria-container {
     margin: 2rem 1rem;
@@ -3096,5 +3096,177 @@ form::before,
 
   .modal-imagen-info h3 {
     font-size: 1.2rem;
+  }
+}
+
+.historia-container {
+  max-width: 1000px;
+  line-height: 1.8;
+}
+
+.historia-container h2 {
+  text-align: center;
+  margin-bottom: 1rem;
+  font-size: 2.5rem;
+}
+
+.historia-container > p {
+  text-align: center;
+  color: #666;
+  margin-bottom: 3rem;
+  font-size: 1.2rem;
+}
+
+.historia-contenido {
+  margin-top: 2rem;
+}
+
+.seccion-historia {
+  margin-bottom: 3rem;
+  padding: 2rem;
+  background: linear-gradient(145deg, #fff, #f8f9fa);
+  border-radius: 15px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  border-left: 5px solid #ba6f12;
+  position: relative;
+  overflow: hidden;
+}
+
+.seccion-historia::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #ba6f12, #d92525, #ba6f12);
+  opacity: 0.7;
+}
+
+.seccion-historia h3 {
+  color: #850f0b;
+  font-size: 1.8rem;
+  margin-bottom: 1.5rem;
+  position: relative;
+  padding-bottom: 0.5rem;
+}
+
+.seccion-historia h3::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 60px;
+  height: 3px;
+  background: linear-gradient(90deg, #ba6f12, #d92525);
+  border-radius: 2px;
+}
+
+.seccion-historia p {
+  color: #555;
+  font-size: 1.1rem;
+  margin-bottom: 1.5rem;
+  text-align: justify;
+}
+
+.seccion-historia p:last-child {
+  margin-bottom: 0;
+}
+
+.seccion-historia img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 10px;
+  margin: 1.5rem 0;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  transition: transform 0.3s ease;
+}
+
+.seccion-historia img:hover {
+  transform: scale(1.02);
+}
+
+.seccion-historia ul,
+.seccion-historia ol {
+  margin: 1.5rem 0;
+  padding-left: 2rem;
+}
+
+.seccion-historia li {
+  margin-bottom: 0.8rem;
+  color: #555;
+}
+
+
+.seccion-historia h4 {
+  color: #ba6f12;
+  font-size: 1.3rem;
+  margin: 2rem 0 1rem;
+  font-weight: 600;
+}
+
+.seccion-historia h5 {
+  color: #850f0b;
+  font-size: 1.1rem;
+  margin: 1.5rem 0 0.8rem;
+  font-weight: 600;
+}
+
+.seccion-historia a {
+  color: #ba6f12;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.seccion-historia a:hover {
+  color: #850f0b;
+  text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+  .historia-container {
+    margin: 2rem 1rem;
+    padding: 1.5rem;
+  }
+
+  .historia-container h2 {
+    font-size: 2rem;
+  }
+
+  .seccion-historia {
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+  }
+
+  .seccion-historia h3 {
+    font-size: 1.5rem;
+  }
+
+  .seccion-historia p {
+    font-size: 1rem;
+    text-align: left;
+  }
+}
+
+@media (max-width: 480px) {
+  .historia-container h2 {
+    font-size: 1.8rem;
+  }
+
+  .historia-container > p {
+    font-size: 1rem;
+  }
+
+  .seccion-historia {
+    padding: 1rem;
+  }
+
+  .seccion-historia h3 {
+    font-size: 1.3rem;
+  }
+
+  .seccion-historia p {
+    font-size: 0.95rem;
   }
 }

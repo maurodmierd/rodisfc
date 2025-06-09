@@ -19,7 +19,7 @@
         
         <div class="header-buttons">
             <?php if (isset($_SESSION['usuario'])): ?>
-                <a href="../login/areaPrivada.php" class="btn-cuenta btn-area-privada">
+                <a href="../views/areaPrivada.php" class="btn-cuenta btn-area-privada">
                     🏠 Área Privada
                 </a>
                 <a href="../login/logout.php" class="btn-cuenta btn-cerrar-sesion">
@@ -36,6 +36,7 @@
 
 <nav>
     <a href="../index.php">Inicio</a>
+    <a href="../views/historia.php">Historia</a>
     <a href="../views/plantilla.php">Plantilla</a>
     <a href="../views/partidos.php">Partidos</a>
     <a href="../views/contacto.php">Contacto</a>

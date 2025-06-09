@@ -31,7 +31,7 @@ include '../includes/header.php';
             <span class="icon">◀️</span> Anterior
         </button>
         <div class="info-paginacion" id="info-paginacion">
-            Página 1 de 1
+            Páxina 1 de 1
         </div>
         <button class="btn-paginacion" id="btn-siguiente" onclick="cambiarPagina(1)">
             Siguiente <span class="icon">▶️</span>
@@ -39,7 +39,7 @@ include '../includes/header.php';
     </div>
 </div>
 
-<!-- Modal para ver imagen en grande -->
+<!-- Ver foto -->
 <div id="modal-imagen" class="modal-imagen" style="display: none;">
     <div class="modal-imagen-contenido">
         <span class="cerrar-modal-imagen" onclick="cerrarModalImagen()">&times;</span>

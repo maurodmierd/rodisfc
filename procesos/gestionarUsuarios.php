@@ -3,7 +3,7 @@
     include '../includes/conexion.php';
 
     if (!isset($_SESSION['usuario']) || $_SESSION['usuario']['rol'] !== 'admin') {
-        header("Location: ../login/areaPrivada.php");
+        header("Location: ../views/areaPrivada.php");
         exit();
     }
 
