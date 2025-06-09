@@ -12,6 +12,9 @@
 ?>
 <script src="js/gestionUsuarios.js"></script>
 <h2>Lista de Usuarios</h2>
+<form action="../api/exportarExcel.php" method="post">
+    <button name="exportar" type="submit">📥 Exportar a Excel</button>
+</form>
 <table class="tabla-usuarios">
     <tr>
         <th>DNI</th>

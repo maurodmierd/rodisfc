@@ -1,5 +1,13 @@
 <?php
 include '../includes/conexion.php';
+
+session_start();
+
+if (!isset($_SESSION['usuario']) || $_SESSION['rol'] !== 'admin') {
+    header('Location: ../../views/areaPrivada.php');
+    exit;
+}
+
 // Cando se envia o formulario, procesase a informacion
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $id = htmlspecialchars($_POST['id']);

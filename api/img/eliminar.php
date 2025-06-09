@@ -6,6 +6,13 @@ header('Content-Type: application/json');
 include '../../includes/json.php';
 include '../../includes/conexion.php';
 
+session_start();
+
+if (!isset($_SESSION['usuario']) || $_SESSION['rol'] !== 'admin') {
+    header('Location: ../../views/areaPrivada.php');
+    exit;
+}
+
 try {
     $input = json_decode(file_get_contents('php://input'), true);
     if (!isset($input['id']) || !is_numeric($input['id'])) {

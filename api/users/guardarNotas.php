@@ -1,4 +1,12 @@
 <?php
+
+session_start();
+
+if (!isset($_SESSION['usuario']) || $_SESSION['rol'] !== 'admin') {
+    header('Location: ../../views/areaPrivada.php');
+    exit;
+}
+
 // Cando se envia o formulario, procesase a informacion
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $nombre = htmlspecialchars($_POST['usuario_id']);

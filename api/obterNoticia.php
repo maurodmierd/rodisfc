@@ -8,7 +8,6 @@ include '../includes/conexion.php';
 
 if (!isset($_GET['id']) || !is_numeric($_GET['id'])) {
     sendResponse(false,'ID de noticia non válido');
-    exit;
 }
 
 $noticiaId = (int)$_GET['id'];

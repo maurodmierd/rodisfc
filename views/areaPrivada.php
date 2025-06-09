@@ -4,7 +4,7 @@ if (session_status() === PHP_SESSION_NONE) {
 }
 // Verificamos se a sesión está iniciada.
 if (!isset($_SESSION['usuario'])) {
-    header("Location: login.php");
+    header("Location: ../login/login.php");
     exit();
 }
 

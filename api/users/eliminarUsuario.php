@@ -6,6 +6,13 @@ header('Content-Type: application/json');
 include '../../includes/json.php';
 include '../../includes/conexion.php';
 
+session_start();
+
+if (!isset($_SESSION['usuario']) || $_SESSION['rol'] !== 'admin') {
+    header('Location: ../../views/areaPrivada.php');
+    exit;
+}
+
 if (!isset($_GET['id'])) {
     sendResponse(false, 'ID de noticia non válido');
     exit;

@@ -6,6 +6,13 @@ header('Content-Type: application/json');
 include '../../includes/json.php';
 include '../../includes/conexion.php';
 
+session_start();
+
+if (!isset($_SESSION['usuario']) || $_SESSION['rol'] !== 'admin') {
+    header('Location: ../../views/areaPrivada.php');
+    exit;
+}
+
 // configuracions para a subida de imaxes
 $max_file_size = 5 * 1024 * 1024; // 5MB
 $extFotos = ['jpg', 'jpeg', 'png', 'gif', 'webp'];
