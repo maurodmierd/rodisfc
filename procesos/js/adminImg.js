@@ -22,16 +22,16 @@ function crearModalGaleria() {
         <div id="galeria" class="modal-galeria" style="display: none;">
             <div class="galeria-contenido">
                 <div class="galeria-header">
-                    <h3>📸 Galería de Imaxes</h3>
+                    <h3><i class="fas fa-camera"></i> Galería de Imaxes</h3>
                     <span class="cerrar-galeria" onclick="cerrarGaleria()">&times;</span>
                 </div>
 
                 <div class="galeria-tabs">
                     <button class="tab-btn active" onclick="cambiarTab('ver')">
-                        <span class="icon">👁️</span> Ver Imaxes
+                        <i class="fas fa-eye"></i> Ver Imaxes
                     </button>
                     <button class="tab-btn" onclick="cambiarTab('subir')">
-                        <span class="icon">📤</span> Subir Imaxe
+                        <i class="fas fa-envelope-open"></i> Subir Imaxe
                     </button>
                 </div>
 
@@ -86,10 +86,10 @@ function crearModalGaleria() {
 
                         <div class="form-actions">
                             <button type="submit" class="btn-subir">
-                                <span class="icon">📤</span> Subir Imaxe
+                                <i class="fas fa-envelope-open"></i> Subir Imaxe
                             </button>
                             <button type="button" onclick="limpiarFormulario()" class="btn-limpiar">
-                                <span class="icon">🗑️</span> Limpar
+                                <i class="fas fa-trash"></i> Limpar
                             </button>
                         </div>
 
@@ -211,7 +211,7 @@ function mostrarImagenes() {
                         <span class="icon">✓</span> Seleccionar
                     </button>
                     <button class="btn-eliminar" onclick="eliminarImagen(${imagen.id}, '${imagen.categoria}', '${imagen.nombre}')">
-                        <span class="icon">🗑️</span>
+                        <i class="fas fa-trash"></i>
                     </button>
                 </div>
             </div>

@@ -26,7 +26,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                                         VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
             $stmt->execute([$dni, $nombre, $apellidos, $telefono, $email, $fecha, $password, $rol]);
 
-            echo "<div class='mensaje-exito'><p>✅ " . ucfirst($tipo_usuario) . " insertado correctamente</p></div>";
+            echo "<div class='mensaje-exito'><p><i class='fas fa-check'></i> " . ucfirst($tipo_usuario) . " insertado correctamente</p></div>";
             
         } elseif ($tipo_usuario === 'jugador') {
             // Insertar jugador
@@ -40,10 +40,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                                         VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
             $stmt->execute([$dni, $nombre, $apellidos, $equipo, $dorsal, $posicion, $edad, $foto_id]);
 
-            echo "<div class='mensaje-exito'><p>✅ Xogador insertado correctamente</p></div>";
+            echo "<div class='mensaje-exito'><p><i class='fas fa-check'></i> Xogador insertado correctamente</p></div>";
         }
     } catch (PDOException $e) {
-        echo "<div class='mensaje-error'><p>❌ Erro ao insertar: " . $e->getMessage() . "</p></div>";
+        echo "<div class='mensaje-error'><p><i class='fas fa-times'></i> Erro ao insertar: " . $e->getMessage() . "</p></div>";
     }
 }
 ?>
@@ -55,34 +55,34 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     <form method="POST" id="form-insertar-usuario">
         <div class="form-group">
             <label for="tipo_usuario">
-                <span class="icon">🎯</span> Tipo de Usuario:
+                <?=icon('fas fa-map-marker-alt')?> Tipo de Usuario:
             </label>
             <select name="tipo_usuario" id="tipo_usuario" required onchange="cambiarCampos()">
                 <option value="">Seleccionar tipo...</option>
-                <option value="socio">👤 Socio</option>
-                <option value="jugador">⚽ Xogador</option>
-                <option value="admin">🔧 Administrador</option>
+                <option value="socio"><?=icon('fas fa-user')?> Socio</option>
+                <option value="jugador"><?=icon('fas fa-futbol')?> Xogador</option>
+                <option value="admin"><?=icon('fas fa-wrench')?> Administrador</option>
             </select>
         </div>
         <!-- comunes -->
         <div class="campos-comunes">
             <div class="form-group">
                 <label for="dni">
-                    <span class="icon">🆔</span> DNI:
+                    <?=icon('fas fa-wallet')?> DNI:
                 </label>
                 <input type="text" name="dni" id="dni" placeholder="DNI" required>
             </div>
 
             <div class="form-group">
                 <label for="nombre">
-                    <span class="icon">👤</span> Nome:
+                    <?=icon('fas fa-user')?> Nome:
                 </label>
                 <input type="text" name="nombre" id="nombre" placeholder="Nome" required>
             </div>
 
             <div class="form-group">
                 <label for="apellidos">
-                    <span class="icon">👥</span> Apelidos:
+                    <?=icon('fas fa-user')?> Apelidos:
                 </label>
                 <input type="text" name="apellidos" id="apellidos" placeholder="Apelidos" required>
             </div>
@@ -93,21 +93,21 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         <div class="campos-socio" id="campos-socio" style="display: none;">
             <div class="form-group">
                 <label for="telefono">
-                    <span class="icon">📞</span> Teléfono:
+                    <?=icon('fas fa-phone')?> Teléfono:
                 </label>
                 <input type="text" name="telefono" id="telefono" placeholder="Teléfono">
             </div>
 
             <div class="form-group">
                 <label for="email">
-                    <span class="icon">📧</span> Email:
+                    <?=icon('fas fa-envelope')?> Email:
                 </label>
                 <input type="email" name="email" id="email" placeholder="Email">
             </div>
 
             <div class="form-group">
                 <label for="password">
-                    <span class="icon">🔒</span> Contrasinal:
+                    <?=icon('fas fa-lock')?> Contrasinal:
                 </label>
                 <input type="password" name="password" id="password" placeholder="Contrasinal">
             </div>
@@ -117,7 +117,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         <div class="campos-jugador" id="campos-jugador" style="display: none;">
             <div class="form-group">
                 <label for="equipo">
-                    <span class="icon">⚽</span> Equipo:
+                    <?=icon('fas fa-futbol')?> Equipo:
                 </label>
                 <select name="equipo" id="equipo">
                     <option value="">Seleccionar equipo...</option>
@@ -128,14 +128,14 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
             <div class="form-group">
                 <label for="dorsal">
-                    <span class="icon">🔢</span> Dorsal:
+                    <?=icon('fas fa-dice')?> Dorsal:
                 </label>
                 <input type="number" name="dorsal" id="dorsal" placeholder="Número de dorsal" min="1" max="99">
             </div>
 
             <div class="form-group">
                 <label for="posicion">
-                    <span class="icon">🎯</span> Posición:
+                    <?=icon('fas fa-map-marker-alt')?> Posición:
                 </label>
                 <select name="posicion" id="posicion">
                     <option value="">Seleccionar posición...</option>
@@ -148,14 +148,14 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
             <div class="form-group">
                 <label for="edad">
-                    <span class="icon">📅</span> Idade:
+                    <?=icon('fas fa-calendar')?> Idade:
                 </label>
                 <input type="number" name="edad" id="edad" placeholder="Idade" min="15" max="50">
             </div>
 
             <div class="form-group">
                 <label for="foto">
-                    <span class="icon">📸</span> Foto do xogador:
+                    <?=icon('fas fa-camera')?> Foto do xogador:
                 </label>
                 <!-- Campo oculto para gardar o ID da imaxe seleccionada -->
                 <input type="hidden" name="foto" id="fotoSeleccionada">
@@ -165,17 +165,17 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 
                 <!-- Botón para abrir a galería -->
                 <button type="button" class="btn-galeria" onclick="abrirGaleria()">
-                    <span class="icon">🖼️</span> Seleccionar imaxe
+                    <?=icon('fas fa-eye')?> Seleccionar imaxe
                 </button>
             </div>
         </div>
 
         <div class="form-actions">
             <button type="submit" class="btn-insertar">
-                <span class="icon">✅</span> Insertar Usuario
+                <?=icon('fas fa-check')?> Insertar Usuario
             </button>
             <button type="button" class="btn-limpiar" onclick="limpiarFormulario()">
-                <span class="icon">🗑️</span> Limpar
+                <?=icon('fas fa-trash')?> Limpar
             </button>
         </div>
     </form>

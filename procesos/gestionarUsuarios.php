@@ -13,7 +13,7 @@
 <script src="js/gestionUsuarios.js"></script>
 <h2>Lista de Usuarios</h2>
 <form action="../api/exportarExcel.php" method="post">
-    <button name="exportar" type="submit">📥 Exportar a Excel</button>
+    <button name="exportar" type="submit"><?= icon('fas fa-suitcase')?> Exportar a Excel</button>
 </form>
 <table class="tabla-usuarios">
     <tr>
@@ -36,9 +36,9 @@
                     data-apellidos="<?= $usuario['apellidos'] ?>" 
                     data-email="<?= $usuario['email'] ?>"
                     data-telefono="<?= $usuario['telefono'] ?>" 
-                    data-rol="<?= $usuario['rol'] ?>">📝 Editar</button>
-                <button onclick="confirmarEliminacion('<?= $usuario['id'] ?>')">🗑️ Eliminar</button>
-                <button onclick="anotar('<?= $usuario['id'] ?>')">📌 Anotaciones</button>
+                    data-rol="<?= $usuario['rol'] ?>"><?= icon('fas fa-pen')?> Editar</button>
+                <button onclick="confirmarEliminacion('<?= $usuario['id'] ?>')"><?= icon('fas fa-trash')?>  Eliminar</button>
+                <button onclick="anotar('<?= $usuario['id'] ?>')"><?= icon('fas fa-sticky-note')?> Anotaciones</button>
             </td>
         </tr>
     <?php endforeach; ?>
