@@ -14,8 +14,8 @@ function cargarImagenes() {
         .then((response) => response.json())
         .then((data) => {
             if (data.success) {
-                imagenes = data.data;
-                aplicarFiltro();
+                imagenes = data.data
+                aplicarFiltro()
             } else {
                 mostrarError("Erro ao cargar imaxes: " + data.message)
             }
@@ -44,7 +44,7 @@ function mostrarImagenes() {
     if (imagenesFiltradas.length == 0) {
         container.innerHTML = `
             <div class="no-imagenes">
-                <span class="icon">📭</span>
+                <i class="fas fa-inbox no-content-icon"></i>
                 <p>Non hai imaxes nesta categoría</p>
             </div>
         `;
@@ -55,7 +55,7 @@ function mostrarImagenes() {
     let inicio = (paginaActual - 1) * imagenesPorPagina
     let fin = inicio + imagenesPorPagina
     let imagenesPagina = imagenesFiltradas.slice(inicio, fin);
-    container.innerHTML = imagenesPagina.map((imagen) => 
+    container.innerHTML = imagenesPagina.map((imagen) =>
         `
         <div class="imagen-item" data-categoria="${imagen.categoria}">
             <div class="imagen-wrapper">
@@ -66,17 +66,16 @@ function mostrarImagenes() {
                      onerror="this.src='../img/logos/placeholder.png'">
                 <div class="imagen-overlay">
                     <button class="btn-ver" onclick="abrirModalImagen(${imagen.id
-                })">
-                        <span class="icon">👁️</span> Ver
+        })">
+                        <i class="fas fa-eye"></i> Ver
                     </button>
                 </div>
             </div>
             <div class="imagen-info">
                 <h4>${imagen.nombre}</h4>
-                <span class="categoria-badge ${imagen.categoria
-                }">${formatearCategoria(imagen.categoria)}</span>
+                <span class="categoria-badge ${imagen.categoria}">${formatearCategoria(imagen.categoria)}</span>
                 <div class="imagen-fecha">
-                    <span class="icon">📅</span>
+                    <i class="fas fa-calendar-alt"></i>
                     ${formatearFecha(imagen.fecha)}
                 </div>
                 ${imagen.descripcion ? `<p>${imagen.descripcion}</p>` : ""}
@@ -92,7 +91,7 @@ function filtrarCategoria(categoria) {
     categoriaActual = categoria
     document.querySelectorAll(".filtro-btn").forEach((btn) => btn.classList.remove("active"))
     document.querySelector(`[onclick="filtrarCategoria('${categoria}')"]`).classList.add("active")
-    aplicarFiltro();
+    aplicarFiltro()
 }
 
 function cambiarPagina(direccion) {
@@ -105,7 +104,7 @@ function cambiarPagina(direccion) {
         document.querySelector(".galeria-container").scrollIntoView({
             behavior: "smooth",
             block: "start",
-        });
+        })
     }
 }
 
@@ -121,9 +120,9 @@ function actualizarPaginacion() {
 
 function abrirModalImagen(imagenId) {
     let imagen = imagenes.find((img) => img.id == imagenId);
-    if (!imagen){
+    if (!imagen) {
         return
-    } 
+    }
 
     let modal = document.getElementById("modal-imagen")
     let foto = document.getElementById("modal-imagen-foto")
@@ -132,13 +131,13 @@ function abrirModalImagen(imagenId) {
     let fecha = document.getElementById("modal-imagen-fecha")
     let descripcion = document.getElementById("modal-imagen-descripcion")
 
-    foto.src = "../img/"+imagen.categoria+"/"+imagen.nombre
+    foto.src = "../img/" + imagen.categoria + "/" + imagen.nombre
     foto.alt = imagen.nombre
     nombre.textContent = imagen.nombre
     categoria.textContent = formatearCategoria(imagen.categoria)
     categoria.className = `imagen-modal-categoria categoria-badge ${imagen.categoria}`
-    fecha.innerHTML = `<span class="icon">📅</span> ${formatearFecha(imagen.fecha)}`;
-    descripcion.textContent = imagen.descripcion || "Sen descripción";
+    fecha.innerHTML = `<i class="fas fa-calendar-alt"></i> ${formatearFecha(imagen.fecha)}`
+    descripcion.textContent = imagen.descripcion || "Sen descripción"
 
     modal.style.display = "flex";
     document.body.style.overflow = "hidden";
@@ -158,8 +157,8 @@ function formatearCategoria(categoria) {
         equipo: "Equipo",
         noticias: "Noticias",
         otros: "Outros",
-    };
-    return nombres[categoria] || categoria;
+    }
+    return nombres[categoria] || categoria
 }
 
 function formatearFecha(fecha) {
@@ -168,17 +167,17 @@ function formatearFecha(fecha) {
         year: "numeric",
         month: "long",
         day: "numeric",
-    });
+    })
 }
 
 function mostrarError(mensaje) {
     let container = document.getElementById("imagenes-container");
     container.innerHTML = `
         <div class="error-galeria">
-            <span class="icon">❌</span>
+            <i class="fas fa-exclamation-triangle no-content-icon"></i>
             <p>${mensaje}</p>
         </div>
-    `;
+    `
 }
 
 // Event listeners para cerrar modal
@@ -187,12 +186,12 @@ document.addEventListener("DOMContentLoaded", () => {
     // Cerrar facendo clic fora ou ca tecla escape
     modal.addEventListener('click', (e) => {
         if (e.target === modal) {
-            cerrarModal();
+            cerrarModalImagen();
         }
     })
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape') {
-            cerrarModal()
+    document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape" && modal.style.display === "flex") {
+            cerrarModalImagen()
         }
     })
 });

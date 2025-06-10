@@ -6,14 +6,21 @@ $equipo = isset($_GET['equipo']) ? $_GET['equipo'] : 'todos';
 $mes = isset($_GET['mes']) ? intval($_GET['mes']) : date('m');
 $ano = isset($_GET['ano']) ? intval($_GET['ano']) : date('Y');
 
-function obtenerPartidosMes($conexion, $mes, $ano, $equipo) {
-    $stmt = $conexion->prepare("SELECT * 
-                                FROM partido 
-                                WHERE MONTH(fecha) = :mes 
-                                AND YEAR(fecha) = :ano" . $equipo !== 'todos' ? "AND equipo = :equipo" : "" .  " ORDER BY fecha ASC, hora ASC");
+function obtenerPartidosMes($conexion, $mes, $ano, $equipo)
+{
+    $sql = "SELECT * FROM partido WHERE MONTH(fecha) = :mes AND YEAR(fecha) = :ano";
+    if ($equipo !== 'todos') {
+        $sql .= " AND equipo = :equipo";
+    }
+    $sql .= " ORDER BY fecha ASC, hora ASC";
+    $stmt = $conexion->prepare($sql);
     $stmt->bindParam(':mes', $mes);
     $stmt->bindParam(':ano', $ano);
-    $equipo !== 'todos' ? $stmt->bindParam(':equipo', $equipo) : null;
+
+    if ($equipo !== 'todos') {
+        $stmt->bindParam(':equipo', $equipo);
+    }
+
     $stmt->execute();
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
@@ -25,7 +32,8 @@ foreach ($partidos_mes as $partido) {
     $partidos_por_dia[$dia][] = $partido;
 }
 
-function formatearFecha($fecha) {
+function formatearFecha($fecha)
+{
     return date('d/m/Y', strtotime($fecha));
 }
 
@@ -38,23 +46,23 @@ $dia_semana_inicio = ($dia_semana_inicio == 0) ? 6 : $dia_semana_inicio - 1;
 ?>
 
 <div class="container calendario-container">
-    <h2><span class="icon">📅</span> Calendario de Partidos</h2>
-    
+    <h2><?php echo icon('fas fa-calendar-alt'); ?> Calendario de Partidos</h2>
+
     <!-- Filtros -->
     <div class="filtros-calendario">
         <div class="filtro-grupo">
-            <label>Equipo:</label>
+            <label><?php echo icon('fas fa-filter'); ?> Equipo:</label>
             <div class="filtro-equipos">
-                <a href="?equipo=todos&mes=<?php echo $mes; ?>&ano=<?php echo $ano; ?>" 
-                   class="filtro-btn <?php echo $equipo === 'todos' ? 'active' : ''; ?>">
+                <a href="?equipo=todos&mes=<?php echo $mes; ?>&ano=<?php echo $ano; ?>"
+                    class="filtro-btn <?php echo $equipo === 'todos' ? 'active' : ''; ?>">
                     Todos
                 </a>
-                <a href="?equipo=senior&mes=<?php echo $mes; ?>&ano=<?php echo $ano; ?>" 
-                   class="filtro-btn <?php echo $equipo === 'senior' ? 'active' : ''; ?>">
+                <a href="?equipo=senior&mes=<?php echo $mes; ?>&ano=<?php echo $ano; ?>"
+                    class="filtro-btn <?php echo $equipo === 'senior' ? 'active' : ''; ?>">
                     Senior
                 </a>
-                <a href="?equipo=veteranos&mes=<?php echo $mes; ?>&ano=<?php echo $ano; ?>" 
-                   class="filtro-btn <?php echo $equipo === 'veteranos' ? 'active' : ''; ?>">
+                <a href="?equipo=veteranos&mes=<?php echo $mes; ?>&ano=<?php echo $ano; ?>"
+                    class="filtro-btn <?php echo $equipo === 'veteranos' ? 'active' : ''; ?>">
                     Veteranos
                 </a>
             </div>
@@ -71,7 +79,7 @@ $dia_semana_inicio = ($dia_semana_inicio == 0) ? 6 : $dia_semana_inicio - 1;
             $prev_mes = 12;
             $prev_ano--;
         }
-        
+
         // Calcular mes siguiente
         $next_mes = $mes + 1;
         $next_ano = $ano;
@@ -80,16 +88,16 @@ $dia_semana_inicio = ($dia_semana_inicio == 0) ? 6 : $dia_semana_inicio - 1;
             $next_ano++;
         }
         ?>
-        <a href="?mes=<?php echo $prev_mes; ?>&ano=<?php echo $prev_ano; ?>&equipo=<?php echo $equipo; ?>" 
-           class="btn-nav-calendario">
-            <span class="icon">◀️</span>
+        <a href="?mes=<?php echo $prev_mes; ?>&ano=<?php echo $prev_ano; ?>&equipo=<?php echo $equipo; ?>"
+            class="btn-nav-calendario">
+            <?php echo icon('fas fa-chevron-left'); ?>
         </a>
-        
+
         <h3 class="mes-calendario"><?php echo $nombre_mes; ?> <?php echo $ano; ?></h3>
-        
-        <a href="?mes=<?php echo $next_mes; ?>&ano=<?php echo $next_ano; ?>&equipo=<?php echo $equipo; ?>" 
-           class="btn-nav-calendario">
-            <span class="icon">▶️</span>
+
+        <a href="?mes=<?php echo $next_mes; ?>&ano=<?php echo $next_ano; ?>&equipo=<?php echo $equipo; ?>"
+            class="btn-nav-calendario">
+            <?php echo icon('fas fa-chevron-right'); ?>
         </a>
     </div>
     <div class="calendario">
@@ -110,10 +118,10 @@ $dia_semana_inicio = ($dia_semana_inicio == 0) ? 6 : $dia_semana_inicio - 1;
             for ($dia = 1; $dia <= $dias_en_mes; $dia++) {
                 $es_hoy = ($dia == date('j') && $mes == date('m') && $ano == date('Y'));
                 $tiene_partidos = isset($partidos_por_dia[$dia]);
-                
+
                 echo '<div class="dia-calendario ' . ($es_hoy ? 'hoy' : '') . ' ' . ($tiene_partidos ? 'con-partidos' : '') . '">';
                 echo '<span class="numero-dia">' . $dia . '</span>';
-                
+
                 if ($tiene_partidos) {
                     echo '<div class="partidos-dia">';
                     foreach ($partidos_por_dia[$dia] as $partido) {
@@ -121,9 +129,9 @@ $dia_semana_inicio = ($dia_semana_inicio == 0) ? 6 : $dia_semana_inicio - 1;
                         echo '<div class="partido-mini ' . strtolower($partido['equipo']) . ' ' . ($es_pasado ? 'pasado' : 'futuro') . '" 
                                    onclick="mostrarDetallePartido(' . $partido['id'] . ')">';
                         echo '<div class="hora-mini">' . substr($partido['hora'], 0, 5) . '</div>';
-                        echo '<div class="equipos-mini">' . 
-                             substr($partido['equipo_local'], 0, 3) . ' vs ' . 
-                             substr($partido['equipo_visitante'], 0, 3) . '</div>';
+                        echo '<div class="equipos-mini">' .
+                            substr($partido['equipo_local'], 0, 3) . ' vs ' .
+                            substr($partido['equipo_visitante'], 0, 3) . '</div>';
                         if ($es_pasado && isset($partido['goles_local']) && isset($partido['goles_visitante'])) {
                             echo '<div class="resultado-mini">' . $partido['goles_local'] . '-' . $partido['goles_visitante'] . '</div>';
                         }
@@ -131,7 +139,7 @@ $dia_semana_inicio = ($dia_semana_inicio == 0) ? 6 : $dia_semana_inicio - 1;
                     }
                     echo '</div>';
                 }
-                
+
                 echo '</div>';
             }
             ?>
@@ -161,7 +169,7 @@ $dia_semana_inicio = ($dia_semana_inicio == 0) ? 6 : $dia_semana_inicio - 1;
     </div>
 </div>
 
-
+<!-- Modal para detalles do partido -->
 <div id="modal-partido-detalle" class="modal">
     <div class="modal-contenido">
         <span class="cerrar-modal" onclick="cerrarModalPartido()">&times;</span>

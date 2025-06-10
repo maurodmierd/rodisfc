@@ -3,10 +3,10 @@ include '../includes/header.php';
 ?>
 
 <div class="container galeria-container">
-    <h2><span class="icon">📸</span> Galería de Imaxes</h2>
+    <h2><?php echo icon('fas fa-images'); ?> Galería de Imaxes</h2>
     <p>Explora todas as imaxes do noso club</p>
 
-    <!-- Filtros -->
+    <!-- Filtros por categoría -->
     <div class="categoria-filtros">
         <button class="filtro-btn active" onclick="filtrarCategoria('todas')">Todas</button>
         <button class="filtro-btn" onclick="filtrarCategoria('logos')">Logos</button>
@@ -17,10 +17,10 @@ include '../includes/header.php';
         <button class="filtro-btn" onclick="filtrarCategoria('otros')">Outros</button>
     </div>
 
-    <!-- Imaxes -->
+    <!-- imaxes -->
     <div class="imagenes-grid" id="imagenes-container">
         <div class="loading-galeria">
-            <span class="icon">⏳</span>
+            <?php echo icon('fas fa-spinner fa-spin', 'loading-icon'); ?>
             <p>Cargando imaxes...</p>
         </div>
     </div>
@@ -28,13 +28,13 @@ include '../includes/header.php';
     <!-- Paxinas -->
     <div class="paginacion" id="paginacion-container" style="display: none;">
         <button class="btn-paginacion" id="btn-anterior" onclick="cambiarPagina(-1)">
-            <span class="icon">◀️</span> Anterior
+            <?php echo icon('fas fa-chevron-left'); ?> Anterior
         </button>
         <div class="info-paginacion" id="info-paginacion">
             Páxina 1 de 1
         </div>
         <button class="btn-paginacion" id="btn-siguiente" onclick="cambiarPagina(1)">
-            Siguiente <span class="icon">▶️</span>
+            Siguiente <?php echo icon('fas fa-chevron-right'); ?>
         </button>
     </div>
 </div>

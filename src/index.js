@@ -11,7 +11,7 @@ function iniciarCarrusel() {
     indicadores = document.querySelectorAll(".indicador")
     if (totalSlides == 0) {
         console.log("non hai slides.")
-        return false;
+        return false
     }
 
     // eventos para navegacion
@@ -21,7 +21,7 @@ function iniciarCarrusel() {
     nextBtn.addEventListener("click", nextSlide)
     indicadores.forEach((indicador, index) => {
         indicador.addEventListener("click", () => goToSlide(index))
-    });
+    })
 
     configurarBotonesLeerMais()
     startAutoPlay()
@@ -37,6 +37,7 @@ function configurarBotonesLeerMais() {
 
     botonsLeerMais.forEach((boton, index) => {
         let href = boton.getAttribute("href")
+
         if (href) {
             boton.setAttribute("href", `verNoticia.php?id=${index}&ref=carousel`)
             boton.style.display = "inline-flex"
@@ -82,12 +83,12 @@ function startAutoPlay() {
     // porque se duplicaban os intervalos
     stopAutoPlay()
 
-    autoPlayInterval = setInterval(() => {nextSlide()}, 5000)
+    autoPlayInterval = setInterval(() => { nextSlide() }, 5000)
 }
 
 function stopAutoPlay() {
     if (autoPlayInterval) {
-        clearInterval(autoPlayInterval);
+        clearInterval(autoPlayInterval)
         autoPlayInterval = null
     }
 }
@@ -97,16 +98,16 @@ function animarElementos(selector, className) {
     let elementos = document.querySelectorAll(selector)
     elementos.forEach((elemento) => {
         elemento.classList.add(className)
-    });
+    })
 }
 
 function animarElementosDelay(selector, className, delay) {
     let elementos = document.querySelectorAll(selector)
     elementos.forEach((elemento, index) => {
         setTimeout(() => {
-        elemento.classList.add(className)
+            elemento.classList.add(className)
         }, index * delay)
-    });
+    })
 }
 
 function iniciarAnimacions() {
@@ -119,7 +120,7 @@ function iniciarAnimacions() {
 
 function abrirModalNoticia(noticiaId) {
     if (!document.getElementById("modal-noticia")) {
-        crearModalNoticia();
+        crearModalNoticia()
     }
     stopAutoPlay();
     document.getElementById("modal-noticia").style.display = "flex";
@@ -137,13 +138,13 @@ function crearModalNoticia() {
         <div id="modal-noticia" class="modal-noticia" style="display: none;">
         <div class="modal-noticia-contenido">
             <div class="modal-noticia-header">
-            <h3 id="modal-noticia-titulo">📰 Noticia</h3>
+            <h3 id="modal-noticia-titulo"><i class="fas fa-newspaper"></i> Noticia</h3>
             <span class="cerrar-modal-noticia" onclick="cerrarModalNoticia()">&times;</span>
             </div>
             
             <div class="modal-noticia-body" id="modal-noticia-body">
             <div class="loading-noticia">
-                <span class="icon">⏳</span>
+                <i class="fas fa-spinner fa-spin loading-icon"></i>
                 <p>Cargando noticia...</p>
             </div>
             </div>
@@ -151,19 +152,19 @@ function crearModalNoticia() {
         </div>
     `
     document.body.insertAdjacentHTML("beforeend", modalHTML)
-    iniciarEventosModalNoticia();
+    iniciarEventosModalNoticia()
 }
 
 function iniciarEventosModalNoticia() {
     let modal = document.getElementById("modal-noticia")
     modal.addEventListener("click", (e) => {
         if (e.target === modal) {
-        cerrarModalNoticia()
+            cerrarModalNoticia()
         }
     })
     document.addEventListener("keydown", (e) => {
         if (e.key === "Escape" && modal.style.display === "flex") {
-        cerrarModalNoticia()
+            cerrarModalNoticia()
         }
     })
 }
@@ -173,26 +174,26 @@ function cargarNoticia(noticiaId) {
     let modalTitulo = document.getElementById("modal-noticia-titulo");
     modalBody.innerHTML = `
         <div class="loading-noticia">
-        <span class="icon">⏳</span>
+        <i class="fas fa-spinner fa-spin loading-icon"></i>
         <p>Cargando noticia...</p>
         </div>
     `
     // peticion para obter noticia
-    fetch("../api/obterNoticia.php?id="+noticiaId)
+    fetch("../api/obterNoticia.php?id=" + noticiaId)
         .then((response) => response.json())
         .then((data) => {
-        if (data.success) {
-            let noticia = data.data;
-            modalTitulo.innerHTML = `📰 ${noticia.titulo}`;
-            modalBody.innerHTML = `
+            if (data.success) {
+                let noticia = data.data;
+                modalTitulo.innerHTML = `📰 ${noticia.titulo}`;
+                modalBody.innerHTML = `
             <div class="noticia-completa">
                 <div class="noticia-meta">
                 <span class="noticia-fecha">
-                    <span class="icon">📅</span>
+                    <i class="fas fa-calendar-alt"></i>
                     ${formatearFecha(noticia.fecha)}
                 </span>
                 <span class="noticia-categoria">
-                    <span class="icon">🏷️</span>
+                    <i class="fas fa-tag"></i>
                     ${noticia.categoria}
                 </span>
                 </div>
@@ -201,26 +202,26 @@ function cargarNoticia(noticiaId) {
                 ${noticia.contenido}
                 </div>
                 ${noticia.ruta ?
-                 `
+                        `
                 <div class="noticia-imagen-completa">
                     <img src="../${noticia.ruta}" alt="${noticia.titulo}" onerror="this.style.display='none'">
                 </div>
                 ` : ""}
             </div>
             `
-        } else {
-            mostrarErrorNoticia(data.message || "Erro ao cargar a noticia")
-        }
+            } else {
+                mostrarErrorNoticia(data.message || "Erro ao cargar a noticia")
+            }
         })
-        .catch(mostrarErrorNoticia("Erro de conexión"));
+        .catch(mostrarErrorNoticia("Erro de conexión"))
 }
 
 function mostrarErrorNoticia(mensaje) {
     let modalBody = document.getElementById("modal-noticia-body");
     modalBody.innerHTML =
-     `
+        `
         <div class="error-noticia">
-        <span class="icon">❌</span>
+        <i class="fas fa-exclamation-triangle"></i>
         <p>${mensaje}</p>
         </div>
     `

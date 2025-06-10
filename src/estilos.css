@@ -293,7 +293,7 @@ form button:active {
   font-size: 1.1rem;
 }
 
-.container > a {
+.container>a {
   display: inline-block;
   color: #850f0b;
   text-decoration: none;
@@ -304,7 +304,7 @@ form button:active {
   transition: all .3s ease;
 }
 
-.container > a:hover {
+.container>a:hover {
   background-color: #850f0b;
   color: #fff;
 }
@@ -3110,7 +3110,7 @@ form::before,
   font-size: 2.5rem;
 }
 
-.historia-container > p {
+.historia-container>p {
   text-align: center;
   color: #666;
   margin-bottom: 3rem;
@@ -3254,7 +3254,7 @@ form::before,
     font-size: 1.8rem;
   }
 
-  .historia-container > p {
+  .historia-container>p {
     font-size: 1rem;
   }
 
@@ -3269,4 +3269,106 @@ form::before,
   .seccion-historia p {
     font-size: 0.95rem;
   }
+}
+
+
+/* ICONOS */
+.icon,
+i {
+  display: inline-block;
+  margin-right: .5rem;
+  font-size: 1em;
+  vertical-align: middle;
+}
+
+.hero-icon {
+  font-size: 1.2em;
+  margin-right: 1rem;
+}
+
+.placeholder-icon {
+  font-size: 3rem;
+  color: #fff;
+}
+
+.no-content-icon {
+  font-size: 3rem;
+  display: block;
+  margin-bottom: 1rem;
+  opacity: 0.5;
+}
+
+.loading-icon {
+  font-size: 3rem;
+  display: block;
+  margin-bottom: 1rem;
+  color: #ba6f12;
+}
+
+nav a i {
+  margin-right: 0.5rem;
+  font-size: 0.9em;
+}
+
+.btn i,
+.btn-cuenta i,
+.contact-button i {
+  margin-right: 0.5rem;
+  font-size: 1em;
+}
+
+.seccion-header h2 i,
+.grupo-titulo i {
+  margin-right: 0.8rem;
+  color: #ba6f12;
+}
+
+.partido-fecha i,
+.partido-info i,
+.hora i {
+  margin-right: 0.3rem;
+  font-size: 0.9em;
+}
+
+.form-group label i {
+  margin-right: 0.5rem;
+  color: #ba6f12;
+  font-size: 1.1em;
+}
+
+.modal h3 i {
+  margin-right: 0.8rem;
+  color: #ba6f12;
+}
+
+.imagen-modal-fecha i,
+.imagen-fecha i {
+  margin-right: 0.3rem;
+  font-size: 0.9em;
+}
+
+.mensaje-exito i,
+.mensaje-error i,
+.mensaje-encuesta i {
+  margin-right: 0.5rem;
+  font-size: 1.1em;
+}
+
+.seccion-historia h3 i {
+  margin-right: 0.8rem;
+  color: #ba6f12;
+  font-size: 1.1em;
+}
+
+.filtro-grupo label i {
+  margin-right: 0.5rem;
+  color: #850f0b;
+}
+
+.btn-paginacion i {
+  font-size: 0.9em;
+}
+
+.btn-nav-calendario i {
+  font-size: 1.2em;
 }

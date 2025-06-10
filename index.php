@@ -29,7 +29,7 @@ $partidos_proximos = $stmt_partidos_proximos->fetchAll(PDO::FETCH_ASSOC);
 <div class="hero-section">
     <div class="hero-content">
         <h1 class="hero-title">
-            <span class="icon">⚽</span>
+            <?php echo icon('fas fa-futbol', 'hero-icon'); ?>
             Benvido ó Rodís F.C.
         </h1>
         <p class="hero-subtitle">RODÍS, GHU GHA!</p>
@@ -40,7 +40,7 @@ $partidos_proximos = $stmt_partidos_proximos->fetchAll(PDO::FETCH_ASSOC);
     <!-- Sección de Noticias Carrusel -->
     <section id="noticias" class="seccion-animada">
         <div class="seccion-header">
-            <h2><span class="icon">📰</span> Noticias Recentes</h2>
+            <h2><?php echo icon('fas fa-newspaper'); ?> Noticias Recentes</h2>
             <p>Mantente ao día coas últimas novidades do club</p>
         </div>
         
@@ -56,7 +56,7 @@ $partidos_proximos = $stmt_partidos_proximos->fetchAll(PDO::FETCH_ASSOC);
                                             <img src="<?php echo htmlspecialchars($noticia['imagen']); ?>" alt="<?php echo htmlspecialchars($noticia['titulo']); ?>">
                                         <?php else: ?>
                                             <div class="imagen-placeholder">
-                                                <span class="icon">📰</span>
+                                                <?php echo icon('fas fa-newspaper', 'placeholder-icon'); ?>
                                             </div>
                                         <?php endif; ?>
                                     </div>
@@ -68,7 +68,7 @@ $partidos_proximos = $stmt_partidos_proximos->fetchAll(PDO::FETCH_ASSOC);
                                                 data-noticia-id="<?php echo $noticia['id']; ?>"
                                                 data-slide-index="<?php echo $index; ?>"
                                                 type="button">
-                                            <span class="icon">👁️</span> Ler máis
+                                            <?php echo icon('fas fa-eye'); ?> Ler máis
                                         </button>
                                     </div>
                                 </div>
@@ -77,7 +77,7 @@ $partidos_proximos = $stmt_partidos_proximos->fetchAll(PDO::FETCH_ASSOC);
                     <?php else: ?>
                         <div class="carrusel-slide active">
                             <div class="no-content">
-                                <span class="icon">📭</span>
+                                <?php echo icon('fas fa-inbox', 'no-content-icon'); ?>
                                 <p>Non hai noticias públicas para amosar.</p>
                             </div>
                         </div>
@@ -88,7 +88,7 @@ $partidos_proximos = $stmt_partidos_proximos->fetchAll(PDO::FETCH_ASSOC);
             <!-- Controis do carrusel  -->
             <div class="carrusel-controles">
                 <button class="carrusel-btn prev" id="prev-noticia">
-                    <span class="icon">◀️</span>
+                    <?php echo icon('fas fa-chevron-left'); ?>
                 </button>
                 <div class="carrusel-indicadores" id="indicadores-noticias">
                     <?php for ($i = 0; $i < count($noticias); $i++): ?>
@@ -96,7 +96,7 @@ $partidos_proximos = $stmt_partidos_proximos->fetchAll(PDO::FETCH_ASSOC);
                     <?php endfor; ?>
                 </div>
                 <button class="carrusel-btn next" id="next-noticia">
-                    <span class="icon">▶️</span>
+                    <?php echo icon('fas fa-chevron-right'); ?>
                 </button>
             </div>
         </div>
@@ -105,14 +105,14 @@ $partidos_proximos = $stmt_partidos_proximos->fetchAll(PDO::FETCH_ASSOC);
     <!-- Sección dos partidos -->
     <section id="partidos" class="seccion-animada">
         <div class="seccion-header">
-            <h2><span class="icon">⚽</span> Partidos</h2>
+            <h2><?php echo icon('fas fa-futbol'); ?> Partidos</h2>
             <p>Resultados recentes e próximos encontros</p>
         </div>
 
         <!-- Partidos Anteriores -->
         <div class="partidos-grupo">
             <h3 class="grupo-titulo">
-                <span class="icon">📊</span> Últimos Resultados
+                <?php echo icon('fas fa-chart-bar'); ?> Últimos Resultados
             </h3>
             <div class="partidos-grid">
                 <?php if ($partidos_anteriores): ?>
@@ -123,7 +123,7 @@ $partidos_proximos = $stmt_partidos_proximos->fetchAll(PDO::FETCH_ASSOC);
                                     <?php echo ucfirst($partido['equipo']); ?>
                                 </span>
                                 <span class="partido-fecha">
-                                    <span class="icon">📅</span>
+                                    <?php echo icon('fas fa-calendar-alt'); ?>
                                     <?php echo date('d/m/Y', strtotime($partido['fecha'])); ?>
                                 </span>
                             </div>
@@ -145,14 +145,14 @@ $partidos_proximos = $stmt_partidos_proximos->fetchAll(PDO::FETCH_ASSOC);
                                 </div>
                             </div>
                             <div class="partido-info">
-                                <span class="icon">📍</span>
+                                <?php echo icon('fas fa-map-marker-alt'); ?>
                                 <?php echo htmlspecialchars($partido['lugar']); ?>
                             </div>
                         </div>
                     <?php endforeach; ?>
                 <?php else: ?>
                     <div class="no-content">
-                        <span class="icon">📭</span>
+                        <?php echo icon('fas fa-inbox', 'no-content-icon'); ?>
                         <p>Non hai resultados recentes.</p>
                     </div>
                 <?php endif; ?>
@@ -162,7 +162,7 @@ $partidos_proximos = $stmt_partidos_proximos->fetchAll(PDO::FETCH_ASSOC);
         <!-- Próximos Partidos -->
         <div class="partidos-grupo">
             <h3 class="grupo-titulo">
-                <span class="icon">🔜</span> Próximos Partidos
+                <?php echo icon('fas fa-clock'); ?> Próximos Partidos
             </h3>
             <div class="partidos-grid">
                 <?php if ($partidos_proximos): ?>
@@ -173,7 +173,7 @@ $partidos_proximos = $stmt_partidos_proximos->fetchAll(PDO::FETCH_ASSOC);
                                     <?php echo ucfirst($partido['equipo']); ?>
                                 </span>
                                 <span class="partido-fecha">
-                                    <span class="icon">📅</span>
+                                    <?php echo icon('fas fa-calendar-alt'); ?>
                                     <?php echo date('d/m/Y', strtotime($partido['fecha'])); ?>
                                 </span>
                             </div>
@@ -183,7 +183,7 @@ $partidos_proximos = $stmt_partidos_proximos->fetchAll(PDO::FETCH_ASSOC);
                                 </div>
                                 <div class="vs">
                                     <span class="hora">
-                                        <span class="icon">🕐</span>
+                                        <?php echo icon('fas fa-clock'); ?>
                                         <?php echo htmlspecialchars($partido['hora']); ?>
                                     </span>
                                 </div>
@@ -192,14 +192,14 @@ $partidos_proximos = $stmt_partidos_proximos->fetchAll(PDO::FETCH_ASSOC);
                                 </div>
                             </div>
                             <div class="partido-info">
-                                <span class="icon">📍</span>
+                                <?php echo icon('fas fa-map-marker-alt'); ?>
                                 <?php echo htmlspecialchars($partido['lugar']); ?>
                             </div>
                         </div>
                     <?php endforeach; ?>
                 <?php else: ?>
                     <div class="no-content">
-                        <span class="icon">📭</span>
+                        <?php echo icon('fas fa-inbox', 'no-content-icon'); ?>
                         <p>Non hai partidos próximos rexistrados.</p>
                     </div>
                 <?php endif; ?>

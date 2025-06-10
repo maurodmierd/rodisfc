@@ -3,7 +3,7 @@ function mostrarDetallePartido(partidoId) {
     let contenido = document.getElementById("contenido-partido-detalle");
     contenido.innerHTML = `
         <div class="loading-partido">
-            <span class="icon">⏳</span>
+            <i class="fas fa-clock"></i>
             <p>Cargando detalles del partido...</p>
         </div>
     `;
@@ -52,7 +52,7 @@ function mostrarDetallesPartido(partido) {
             partido.goles_visitante !== null
             ? `<div class="resultado-detalle">${partido.goles_local} - ${partido.goles_visitante}</div>`
             : `<div class="hora-detalle">
-                             <span class="icon">🕐</span>
+                             <i class="fas fa-clock"></i>
                              ${partido.hora.substring(0, 5)}
                            </div>`
         }
@@ -69,15 +69,15 @@ function mostrarDetallesPartido(partido) {
             
             <div class="partido-info-detalle">
                 <div class="info-item">
-                    <span class="icon">📍</span>
+                    <i class="fas fa-map-marker-alt"></i>
                     <strong>Lugar:</strong> ${partido.lugar}
                 </div>
                 <div class="info-item">
-                    <span class="icon">📅</span>
+                    <i class="fas fa-calendar-alt"></i>
                     <strong>Data:</strong> ${fecha}
                 </div>
                 <div class="info-item">
-                    <span class="icon">🕐</span>
+                    <i class="fas fa-clock"></i>
                     <strong>Hora:</strong> ${partido.hora.substring(0, 5)}
                 </div>
             </div>
@@ -89,7 +89,7 @@ function mostrarErrorPartido(mensaje) {
     let contenido = document.getElementById("contenido-partido-detalle");
     contenido.innerHTML = `
         <div class="error-partido">
-            <span class="icon">❌</span>
+            <i class="fas fa-times"></i>
             <p>${mensaje}</p>
         </div>
     `;
