@@ -129,24 +129,20 @@ $partidos_proximos = $stmt_partidos_proximos->fetchAll(PDO::FETCH_ASSOC);
                             </div>
                             <div class="partido-equipos">
                                 <div class="equipo local">
-                                    <span class="equipo-nombre"><?php echo htmlspecialchars($partido['equipo_local']); ?></span>
+                                    <span class="equipo-nombre"><?php echo htmlspecialchars($partido['equipo']); ?></span>
                                 </div>
                                 <div class="vs">
                                     <span class="resultado">
-                                        <?php if (isset($partido['goles_local']) && isset($partido['goles_visitante'])): ?>
-                                            <?php echo $partido['goles_local']; ?> - <?php echo $partido['goles_visitante']; ?>
+                                        <?php if (isset($partido['goles_a_favor']) && isset($partido['goles_en_contra'])): ?>
+                                            <?php echo $partido['goles_a_favor']; ?> - <?php echo $partido['goles_en_contra']; ?>
                                         <?php else: ?>
                                             VS
                                         <?php endif; ?>
                                     </span>
                                 </div>
                                 <div class="equipo visitante">
-                                    <span class="equipo-nombre"><?php echo htmlspecialchars($partido['equipo_visitante']); ?></span>
+                                    <span class="equipo-nombre"><?php echo htmlspecialchars($partido['equipo_rival']); ?></span>
                                 </div>
-                            </div>
-                            <div class="partido-info">
-                                <?php echo icon('fas fa-map-marker-alt'); ?>
-                                <?php echo htmlspecialchars($partido['lugar']); ?>
                             </div>
                         </div>
                     <?php endforeach; ?>
@@ -179,7 +175,7 @@ $partidos_proximos = $stmt_partidos_proximos->fetchAll(PDO::FETCH_ASSOC);
                             </div>
                             <div class="partido-equipos">
                                 <div class="equipo local">
-                                    <span class="equipo-nombre"><?php echo htmlspecialchars($partido['equipo_local']); ?></span>
+                                    <span class="equipo-nombre"><?php echo htmlspecialchars($partido['equipo']); ?></span>
                                 </div>
                                 <div class="vs">
                                     <span class="hora">
@@ -188,12 +184,8 @@ $partidos_proximos = $stmt_partidos_proximos->fetchAll(PDO::FETCH_ASSOC);
                                     </span>
                                 </div>
                                 <div class="equipo visitante">
-                                    <span class="equipo-nombre"><?php echo htmlspecialchars($partido['equipo_visitante']); ?></span>
+                                    <span class="equipo-nombre"><?php echo htmlspecialchars($partido['equipo_rival']); ?></span>
                                 </div>
-                            </div>
-                            <div class="partido-info">
-                                <?php echo icon('fas fa-map-marker-alt'); ?>
-                                <?php echo htmlspecialchars($partido['lugar']); ?>
                             </div>
                         </div>
                     <?php endforeach; ?>

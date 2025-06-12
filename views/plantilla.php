@@ -20,25 +20,37 @@ $jugadores_senior = obtenerJugadores($conexion, 'senior');
 $jugadores_veteranos = obtenerJugadores($conexion, 'veteranos');
 ?>
 
-
 <div class="container">
-    <h2 class="anton">Plantilla do Club</h2>
+    <h2 class="anton"><?php echo icon('fas fa-users'); ?> Plantilla do Club</h2>
     <p>Os nosos xogadores</p>
 
     <!-- Equipo Senior -->
     <div class="equipo-seccion">
-        <h3 class="titulo-equipo senior">🏆 EQUIPO SENIOR</h3>
+        <h3 class="titulo-equipo senior"><?php echo icon('fas fa-trophy'); ?> EQUIPO SENIOR</h3>
         <div class="jugadores-grid" id="jugadores-senior">
             <?php if (empty($jugadores_senior)): ?>
                 <div class="no-jugadores">
+                    <i class="fas fa-inbox no-content-icon"></i>
                     <p>Non hai xogadores rexistrados no equipo senior</p>
                 </div>
             <?php else: ?>
                 <?php foreach ($jugadores_senior as $jugador): ?>
                     <div class="jugador-card" onclick="mostrarDetallesXogador(<?php echo htmlspecialchars(json_encode($jugador)); ?>)">
                         <div class="jugador-foto">
-                            <?php if (!empty($jugador['foto']) && file_exists($jugador['foto'])): ?>
-                                <img src="<?php echo htmlspecialchars($jugador['foto']); ?>" alt="<?php echo htmlspecialchars($jugador['nombre']); ?>">
+                            <?php if (!empty($jugador['foto_id'])): ?>
+                                <?php
+                                // Obtener la ruta de la imagen
+                                $stmt_img = $conexion->prepare("SELECT ruta FROM img WHERE id = ? AND activo = 1");
+                                $stmt_img->execute([$jugador['foto_id']]);
+                                $imagen = $stmt_img->fetch(PDO::FETCH_ASSOC);
+                                ?>
+                                <?php if ($imagen && file_exists("../" . $imagen['ruta'])): ?>
+                                    <img src="../<?php echo htmlspecialchars($imagen['ruta']); ?>" alt="<?php echo htmlspecialchars($jugador['nombre']); ?>">
+                                <?php else: ?>
+                                    <div class="foto-placeholder">
+                                        <span class="inicial"><?php echo strtoupper(substr($jugador['nombre'], 0, 1)); ?></span>
+                                    </div>
+                                <?php endif; ?>
                             <?php else: ?>
                                 <div class="foto-placeholder">
                                     <span class="inicial"><?php echo strtoupper(substr($jugador['nombre'], 0, 1)); ?></span>
@@ -58,23 +70,33 @@ $jugadores_veteranos = obtenerJugadores($conexion, 'veteranos');
         </div>
     </div>
 
-
-
-
     <!-- Equipo Veteranos -->
     <div class="equipo-seccion">
-        <h3 class="titulo-equipo veteranos">🥇 EQUIPO VETERANOS</h3>
+        <h3 class="titulo-equipo veteranos"><?php echo icon('fas fa-medal'); ?> EQUIPO VETERANOS</h3>
         <div class="jugadores-grid" id="jugadores-veteranos">
             <?php if (empty($jugadores_veteranos)): ?>
                 <div class="no-jugadores">
+                    <i class="fas fa-inbox no-content-icon"></i>
                     <p>Non hai xogadores rexistrados no equipo veteranos</p>
                 </div>
             <?php else: ?>
                 <?php foreach ($jugadores_veteranos as $jugador): ?>
                     <div class="jugador-card" onclick="mostrarDetallesXogador(<?php echo htmlspecialchars(json_encode($jugador)); ?>)">
                         <div class="jugador-foto">
-                            <?php if (!empty($jugador['foto']) && file_exists($jugador['foto'])): ?>
-                                <img src="<?php echo htmlspecialchars($jugador['foto']); ?>" alt="<?php echo htmlspecialchars($jugador['nombre']); ?>">
+                            <?php if (!empty($jugador['foto_id'])): ?>
+                                <?php
+                                // Obtener la ruta de la imagen
+                                $stmt_img = $conexion->prepare("SELECT ruta FROM img WHERE id = ? AND activo = 1");
+                                $stmt_img->execute([$jugador['foto_id']]);
+                                $imagen = $stmt_img->fetch(PDO::FETCH_ASSOC);
+                                ?>
+                                <?php if ($imagen && file_exists("../" . $imagen['ruta'])): ?>
+                                    <img src="../<?php echo htmlspecialchars($imagen['ruta']); ?>" alt="<?php echo htmlspecialchars($jugador['nombre']); ?>">
+                                <?php else: ?>
+                                    <div class="foto-placeholder">
+                                        <span class="inicial"><?php echo strtoupper(substr($jugador['nombre'], 0, 1)); ?></span>
+                                    </div>
+                                <?php endif; ?>
                             <?php else: ?>
                                 <div class="foto-placeholder">
                                     <span class="inicial"><?php echo strtoupper(substr($jugador['nombre'], 0, 1)); ?></span>
@@ -100,7 +122,7 @@ $jugadores_veteranos = obtenerJugadores($conexion, 'veteranos');
         <span class="cerrar-modal" onclick="cerrarModal()">&times;</span>
         <div class="jugador-detalle">
             <div class="jugador-foto-grande">
-                <img id="modal-foto" src="../../img/logos/placeholder.png" alt="">
+                <img id="modal-foto" src="/placeholder.svg" alt="">
                 <div class="dorsal-grande">
                     <span id="modal-dorsal"></span>
                 </div>
@@ -109,19 +131,19 @@ $jugadores_veteranos = obtenerJugadores($conexion, 'veteranos');
                 <h3 id="modal-nombre"></h3>
                 <div class="datos-grid">
                     <div class="dato">
-                        <label>Equipo:</label>
+                        <label><?php echo icon('fas fa-users'); ?> Equipo:</label>
                         <span id="modal-equipo"></span>
                     </div>
                     <div class="dato">
-                        <label>Posición:</label>
+                        <label><?php echo icon('fas fa-running'); ?> Posición:</label>
                         <span id="modal-posicion"></span>
                     </div>
                     <div class="dato">
-                        <label>Edad:</label>
+                        <label><?php echo icon('fas fa-birthday-cake'); ?> Edad:</label>
                         <span id="modal-edad"></span>
                     </div>
                     <div class="dato dato-completo">
-                        <label>Observaciones:</label>
+                        <label><?php echo icon('fas fa-sticky-note'); ?> Observaciones:</label>
                         <span id="modal-observaciones"></span>
                     </div>
                 </div>
@@ -131,8 +153,4 @@ $jugadores_veteranos = obtenerJugadores($conexion, 'veteranos');
 </div>
 
 <script src="js/plantilla.js"></script>
-
-</body>
-</html>
-
 <?php include '../includes/footer.php'; ?>

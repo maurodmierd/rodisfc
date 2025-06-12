@@ -17,8 +17,7 @@ include '../includes/header.php';
     <!-- Comproba o rol do usuario para saber se ten acceso a esta sección. -->
     <?php if (isset($_SESSION['rol']) && $_SESSION['rol'] === 'admin'): ?>
         <div class="admin-botonera" style='padding: 15px 100px;'>
-            <a href="../procesos/insertarSocio.php" class="btn">Insertar Socio</a>
-            <a href="../procesos/insertarJugador.php" class="btn">Insertar Jugador</a>
+            <a href="../procesos/insertarUsuario.php" class="btn">Insertar usuario</a>
             <a href="../procesos/verMensajes.php" class="btn">Ver mensajes de contacto</a>
             <a href="../procesos/escribirNoticia.php" class="btn">Escribir Noticia</a>
             <a href="../procesos/gestionarUsuarios.php" class="btn">Gestionar Usuarios</a>
@@ -45,7 +44,7 @@ include '../includes/header.php';
     ?>
         <article class="noticia">
             <h4><?php echo htmlspecialchars($noticia['titulo']); ?></h4>
-            <p><?php echo nl2br(htmlspecialchars($noticia['texto'])); ?></p>
+            <p><?php echo nl2br(htmlspecialchars($noticia['contenido'])); ?></p>
         </article>
     <?php
         endforeach;

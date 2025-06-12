@@ -30,7 +30,7 @@ function icon($name, $class = '') {
         
         <div class="header-buttons">
             <?php if (isset($_SESSION['usuario'])): ?>
-                <a href="../login/areaPrivada.php" class="btn-cuenta btn-area-privada">
+                <a href="../views/areaPrivada.php" class="btn-cuenta btn-area-privada">
                     <?php echo icon('fas fa-home'); ?> Área Privada
                 </a>
                 <a href="../login/logout.php" class="btn-cuenta btn-cerrar-sesion">

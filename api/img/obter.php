@@ -25,7 +25,7 @@ try {
                 'categoria' => $row['categoria'],
                 'descripcion' => $row['descripcion'],
                 'fecha' => $row['fecha'],
-                'url' => $row['ruta']
+                'ruta' => $row['ruta']
             ];
             
         } else {

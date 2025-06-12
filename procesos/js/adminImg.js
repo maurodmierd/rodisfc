@@ -169,7 +169,7 @@ function cambiarTab(tab) {
 
 // Obter imxes
 function cargarImagenes() {
-    fetch('../../src/img/obter.php')
+    fetch('../../api/img/obter.php')
     .then(response => response.json())
     .then(data => {
         if (data.success) {
@@ -199,12 +199,12 @@ function mostrarImagenes() {
     container.innerHTML = imagenesFiltradas.map(imagen => `
         <div class="imagen-item" data-categoria="${imagen.categoria}">
             <div class="imagen-wrapper">
-                <img src="../img/${imagen.categoria}/${imagen.nombre}" 
+                <img src="../${imagen.ruta}" 
                      alt="${imagen.descripcion || imagen.nombre}"
                      onclick="seleccionarImagen(this)"
                      data-id="${imagen.id}"
                      data-nombre="${imagen.nombre}"
-                     data-categoria="${imagen.categoria}"
+                     data-ruta="../${imagen.ruta}"
                      onerror="this.src='../../img/logos/placeholder.png?height=150&width=200'">
                 <div class="imagen-overlay">
                     <button class="btn-seleccionar" onclick="seleccionarImagen(this.parentElement.previousElementSibling)">
@@ -237,7 +237,7 @@ function filtrarCategoria(categoria) {
 function seleccionarImagen(img) {
     let id = img.getAttribute('data-id')
     let nombre = img.getAttribute('data-nombre')
-    let categoria = img.getAttribute('data-categoria')
+    let ruta = img.getAttribute('data-ruta')
     let input = document.getElementById('fotoSeleccionada')
     let preview = document.getElementById('previewImagenSeleccionada')
 
@@ -246,7 +246,7 @@ function seleccionarImagen(img) {
         preview.innerHTML = `
             <div class="imagen-seleccionada">
                 <p><strong>Imaxe seleccionada:</strong></p>
-                <img src="../img/${categoria}/${nombre}" alt="${nombre}" onerror="this.src='../../img/logos/placeholder.png?height=150&width=200'">
+                <img src="${ruta}" alt="${nombre}" onerror="this.src='../../img/logos/placeholder.png?height=150&width=200'">
                 <p>${nombre}</p>
             </div>
         `
@@ -298,7 +298,7 @@ function subirImagen() {
         mostrarError('Erro de conexión')
         progressContainer.style.display = 'none'
     })
-    xhr.open('POST', '../../src/img/subir.php')
+    xhr.open('POST', '../../api/img/subir.php')
     xhr.send(formData)
 }
 
@@ -312,7 +312,7 @@ function limpiarFormulario() {
 // eliminar imagen
 function eliminarImagen(id, categoria, nombre) {
     if (confirm('Está seguro de querer eliminar esta imaxe?')) {
-        fetch('../../src/img/eliminar.php', {
+        fetch('../../api/img/eliminar.php', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

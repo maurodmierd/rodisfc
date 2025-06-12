@@ -59,7 +59,7 @@ function mostrarImagenes() {
         `
         <div class="imagen-item" data-categoria="${imagen.categoria}">
             <div class="imagen-wrapper">
-                <img src="../img/${imagen.categoria}/${imagen.nombre}" 
+                <img src="../${imagen.ruta}" 
                      alt="${imagen.descripcion || imagen.nombre}"
                      onclick="abrirModalImagen(${imagen.id})"
                      data-id="${imagen.id}"
@@ -128,10 +128,11 @@ function abrirModalImagen(imagenId) {
     let foto = document.getElementById("modal-imagen-foto")
     let nombre = document.getElementById("modal-imagen-nombre")
     let categoria = document.getElementById("modal-imagen-categoria")
+    let ruta = imagen.ruta
     let fecha = document.getElementById("modal-imagen-fecha")
     let descripcion = document.getElementById("modal-imagen-descripcion")
 
-    foto.src = "../img/" + imagen.categoria + "/" + imagen.nombre
+    foto.src = "../"+ruta
     foto.alt = imagen.nombre
     nombre.textContent = imagen.nombre
     categoria.textContent = formatearCategoria(imagen.categoria)

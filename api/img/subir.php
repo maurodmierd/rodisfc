@@ -60,7 +60,7 @@ try {
     }
     
     
-    $ruta_destino = __DIR__ . "/../../../img/$categoria/$nombre_archivo.$ext_archivo";
+    $ruta_destino = __DIR__ . "/../../img/$categoria/$nombre_archivo.$ext_archivo";
     if (!move_uploaded_file($archivo['tmp_name'], $ruta_destino)) {
         sendResponse(false, 'Error ao gardar o archivo');
     }

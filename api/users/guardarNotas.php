@@ -1,5 +1,4 @@
 <?php
-
 session_start();
 
 if (!isset($_SESSION['usuario']) || $_SESSION['rol'] !== 'admin') {
@@ -7,32 +6,41 @@ if (!isset($_SESSION['usuario']) || $_SESSION['rol'] !== 'admin') {
     exit;
 }
 
-// Cando se envia o formulario, procesase a informacion
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    $nombre = htmlspecialchars($_POST['usuario_id']);
-    $texto = htmlspecialchars($_POST['nota']);
-
-    $entrada = [
-        'usuario' => $nombre,
-        'texto' => $texto,
-    ];
+    $usuario_id = htmlspecialchars($_POST['usuario_id']);
+    $texto_nota = htmlspecialchars($_POST['nota']);
 
     $archivo = '../../datos/notas.json';
-
     $datos = [];
 
-    // Comproba se o JSON existe, 
     if (file_exists($archivo)) {
-        // Se existe, recolle o contido e gardao coma un string
         $contenido = file_get_contents($archivo);
-        // Decodifica o string do JSON
         $datos = json_decode($contenido, true);
+        if (!is_array($datos)) {
+            $datos = [];
+        }
     }
 
-    $datos[] = $entrada;
-    // Codifica os datos de novo a formato JSON e gárdao no arquivo
+    $nota_existente = false;
+    foreach ($datos as $key => $nota) {
+        if (isset($nota['usuario']) && $nota['usuario'] == $usuario_id) {
+            $datos[$key]['texto'] = $texto_nota;
+            $nota_existente = true;
+            break;
+        }
+    }
+
+    if (!$nota_existente) {
+        $nueva_entrada = [
+            'usuario' => $usuario_id,
+            'texto' => $texto_nota,
+        ];
+        $datos[] = $nueva_entrada;
+    }
+
     file_put_contents($archivo, json_encode($datos, JSON_PRETTY_PRINT));
-    header('Location: ../procesos/gestionarUsuarios.php');
+    
+    header('Location: ../../procesos/gestionarUsuarios.php');
     exit();
 }
 ?>
