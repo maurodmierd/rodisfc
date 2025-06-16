@@ -144,7 +144,7 @@ function iniciarEventos() {
     })
     
     // Cerrar facendo clic fora ou ca tecla escape
-    let modal = document.getElementById('modal-jugador')
+    let modal = document.getElementById('galeria')
     modal.addEventListener('click', (e) => {
         if (e.target === modal) {
             cerrarModal();

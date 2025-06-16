@@ -1132,6 +1132,30 @@ form button:active {
   display: flex;
 }
 
+.modal-galeria {
+  background: linear-gradient(145deg, #fff, #f8f9fa);
+  padding: 3rem;
+  border-radius: 20px;
+  max-width: 500px;
+  width: 90%;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 25px 50px #0000004d;
+  position: relative;
+  border: 1px solid #ba6f1233;
+}
+
+.modal-galeria::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 5px;
+  background: linear-gradient(90deg, #d92525, #ba6f12, #d92525);
+  border-radius: 20px 20px 0 0;
+}
+
 .modal-contenido {
   background: linear-gradient(145deg, #fff, #f8f9fa);
   padding: 3rem;

@@ -15,7 +15,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $tipo_usuario = trim($_POST['tipo_usuario']);
     $dni = trim($_POST['dni']);
     $nombre = trim($_POST['nombre']);
-    $nombref = trim($_POST['nombref']);
+    $nombref = !empty($_POST['nombref'])?trim($_POST['nombref']):"";
     $apellidos = trim($_POST['apellidos']);
     
     // Validaciones básicas
@@ -139,7 +139,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 $errores[] = "ID de foto non válido";
             } else {
                 try {
-                    $stmt = $conexion->prepare("SELECT id FROM img WHERE id = ? AND activo = 1");
+                    $stmt = $conexion->prepare("SELECT id FROM img WHERE id = ?");
                     $stmt->execute([$foto_id]);
                     if (!$stmt->fetch()) {
                         $errores[] = "A imaxe seleccionada non existe ou non está activa";
@@ -180,7 +180,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 
             } elseif ($tipo_usuario === 'jugador') {
                 // Insertar jugador
-                $stmt = $conexion->prepare("INSERT INTO jugadores (id, nombre_futbolistico,nombre,apellidos,fechaNac, equipo, dorsal, posicion, edad, foto_id) 
+                $stmt = $conexion->prepare("INSERT INTO jugadores (id, nombre_futbolistico,nombre,apellidos,fechaNac, equipo, dorsal, posicion, edad, foto) 
                                             VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
                 $stmt->execute([
                     $dni, 

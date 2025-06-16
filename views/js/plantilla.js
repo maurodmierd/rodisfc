@@ -2,7 +2,7 @@ class Xogador {
   constructor(datos) {
     this.dni = datos.dni
     this.nombre = datos.nombre
-    this.apellidos = datos.apellidos
+    this.apellidos = datos.apellido
     this.dorsal = datos.dorsal
     this.equipo = datos.equipo
     this.posicion = datos.posicion
